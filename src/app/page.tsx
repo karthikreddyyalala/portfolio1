@@ -1,103 +1,178 @@
-import Image from "next/image";
+import { HeroGeometric } from "@/components/ui/shape-landing-hero";
+import { Navigation } from "@/components/Navigation";
+import { About } from "@/components/About";
+import { Skills } from "@/components/Skills";
+import { Projects } from "@/components/Projects";
+import { Experience } from "@/components/Experience";
+import { Contact } from "@/components/Contact";
+
+// Portfolio data - Karthik's information from resume
+const portfolioData = {
+  name: "Karthik Reddy Yalala",
+  title: "Computer Science Student & Software Engineer",
+  description: "Passionate Computer Science student at Arizona State University with a 4.0 GPA, specializing in AI/ML, web development, and data analysis. I build innovative solutions using modern technologies including React, Python, and AI frameworks. Currently working on cutting-edge projects involving LangChain, CrewAI, and autonomous systems.",
+  experience: "2+ Years Experience",
+  location: "Tempe, Arizona",
+  
+  skills: [
+    { name: "JavaScript", level: 95, category: "Programming Languages" },
+    { name: "TypeScript", level: 90, category: "Programming Languages" },
+    { name: "Python", level: 92, category: "Programming Languages" },
+    { name: "Java", level: 85, category: "Programming Languages" },
+    { name: "C/C++", level: 80, category: "Programming Languages" },
+    { name: "HTML/CSS", level: 90, category: "Web Development" },
+    { name: "React.js", level: 95, category: "Web Development" },
+    { name: "Node.js", level: 88, category: "Web Development" },
+    { name: "Express.js", level: 85, category: "Web Development" },
+    { name: "REST APIs", level: 90, category: "Web Development" },
+    { name: "TensorFlow", level: 85, category: "AI/ML" },
+    { name: "Keras", level: 80, category: "AI/ML" },
+    { name: "LangChain", level: 88, category: "AI/ML" },
+    { name: "CrewAI", level: 85, category: "AI/ML" },
+    { name: "PostgreSQL", level: 85, category: "Databases" },
+    { name: "MongoDB", level: 80, category: "Databases" },
+    { name: "MySQL", level: 75, category: "Databases" },
+    { name: "AWS", level: 80, category: "Cloud & Tools" },
+    { name: "Docker", level: 75, category: "Cloud & Tools" },
+    { name: "Git", level: 90, category: "Cloud & Tools" },
+    { name: "n8n", level: 70, category: "Cloud & Tools" },
+  ],
+  
+  projects: [
+    {
+      title: "Career Digital Twin",
+      description: "Built an AI Digital Twin that simulates interview prep and employer Q&A, helping users practice career conversations in real time. Deployed on Hugging Face Spaces and Vercel, enabling 20+ simulated interview sessions and reducing manual prep time by 50%.",
+      technologies: ["LangChain", "Hugging Face Spaces", "Vercel", "OpenAI APIs", "React"],
+      image: "/images/projects/career-twin.jpg",
+      projectType: "career-twin",
+      liveUrl: "https://huggingface.co/spaces/karthik/career-digital-twin",
+      githubUrl: "https://github.com/karthikreddyyalala/Carrer-Digital-twin",
+      featured: true,
+    },
+    {
+      title: "Deep Research Agent Team",
+      description: "Engineered a multi-agent research system that automated topic exploration, data retrieval, and synthesis, reducing manual research effort by 70%. Implemented planner-executor-reflector workflows with RAG, delivering faster, more accurate summaries than manual methods.",
+      technologies: ["CrewAI", "LangGraph", "OpenAI APIs", "Pinecone", "Python"],
+      image: "/images/projects/research-agent.jpg",
+      projectType: "research-agent",
+      liveUrl: "https://github.com/karthik/deep-research-agent",
+      githubUrl: "https://github.com/karthikreddyyalala/Deep-Research-Agent-Team-",
+      featured: true,
+    },
+    {
+      title: "Autonomous Trading Floor",
+      description: "Simulated an autonomous trading floor with 4 collaborating agents (analyst, trader, risk manager, critic) to evaluate and execute stock decisions. Leveraged 6 MCP servers and 44 integrated tools, enabling real-time trade simulation and reducing decision latency by 35%.",
+      technologies: ["MCP", "CrewAI", "Docker", "OpenAI APIs", "Python"],
+      image: "/images/projects/trading-floor.jpg",
+      projectType: "trading-floor",
+      liveUrl: "https://github.com/karthik/autonomous-trading",
+      githubUrl: "https://github.com/karthikreddyyalala/Autonomous-Trading-Floor",
+      featured: true,
+    },
+    {
+      title: "Stock Price Predictor",
+      description: "Developed an LSTM-based deep learning model for stock forecasting, improving prediction accuracy by 12% over baseline linear models. Applied normalization, windowing, and hyperparameter tuning, with Matplotlib visualizations to evaluate performance on 50k+ data points.",
+      technologies: ["Python", "Keras", "TensorFlow", "Pandas", "Matplotlib"],
+      image: "/images/projects/stock-predictor.jpg",
+      projectType: "stock-predictor",
+      liveUrl: "https://github.com/karthik/stock-predictor",
+      githubUrl: "https://github.com/karthikreddyyalala/Stock-Price-Predictor",
+      featured: false,
+    },
+  ],
+  
+  experiences: [
+    {
+      title: "Data Analyst Intern",
+      company: "Food Forest AI",
+      location: "Philadelphia, PA",
+      startDate: "May 2025",
+      endDate: "July 2025",
+      description: [
+        "Cleaned, validated, and enriched 200+ company records by verifying contact, geographic, and web presence data using manual research and GPT-powered tools",
+        "Extracted structured insights from websites and HTML pages to categorize product offerings, services, capabilities, and certifications, improving dataset quality by 40%",
+        "Streamlined data deduplication and anomaly flagging using Google Sheets automation, ensuring high-quality integration into an AI-driven B2B search platform",
+      ],
+      technologies: ["Python", "GPT", "Google Sheets", "Data Analysis", "Web Scraping"],
+    },
+    {
+      title: "Software Engineer Intern",
+      company: "YJR Realtors",
+      location: "Hyderabad, India",
+      startDate: "May 2024",
+      endDate: "July 2024",
+      description: [
+        "Built a responsive customer interface and integrated AI-powered chat agents to handle property inquiries, reducing manual staff responses",
+        "Developed an email automation agent using Excel + SendGrid API to send personalized client emails in one click, saving hours of repetitive work weekly",
+        "Designed an internal lead management dashboard to track customer requests and automate follow-ups, improving response time by 40%",
+      ],
+      technologies: ["React", "AI Chat Agents", "SendGrid API", "Excel", "Dashboard Development"],
+    },
+  ],
+  
+  education: [
+    {
+      degree: "Bachelor's in Computer Science",
+      institution: "Arizona State University",
+      location: "Tempe, Arizona",
+      year: "May 2027",
+      description: "GPA: 4.0 | Dean's List: Fall 2023, Spring 2024, Fall 2024, Spring 2025. Relevant Coursework: Algorithms, Data Structures, Object-Oriented Programming, Operating Systems, Software Engineering, Cybersecurity, Artificial Intelligence, Machine Learning, Web Development, Discrete Mathematics.",
+    },
+  ],
+  
+  contactInfo: {
+    email: "karthikreddyy386@gmail.com",
+    phone: "+1 (623) 888-4033",
+    location: "Tempe, Arizona",
+    linkedin: "https://linkedin.com/in/kyalala/",
+    github: "https://github.com/karthikreddyyalala",
+    instagram: "https://www.instagram.com/karthikreddy_y/",
+  },
+};
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+    <div className="min-h-screen bg-[#030303]">
+      <Navigation name={portfolioData.name} />
+      
+      <main>
+        <section id="home">
+          <HeroGeometric
+            title1="Hello, I'm"
+            title2="Karthik"
+            showPhoto={true}
+          />
+        </section>
+        
+        <section id="about">
+          <About
+            name={portfolioData.name}
+            title={portfolioData.title}
+            description={portfolioData.description}
+            experience={portfolioData.experience}
+            location={portfolioData.location}
+          />
+        </section>
+        
+        <section id="skills">
+          <Skills skills={portfolioData.skills} />
+        </section>
+        
+        <section id="projects">
+          <Projects projects={portfolioData.projects} />
+        </section>
+        
+        <section id="experience">
+          <Experience
+            experiences={portfolioData.experiences}
+            education={portfolioData.education}
+          />
+        </section>
+        
+        <section id="contact">
+          <Contact contactInfo={portfolioData.contactInfo} />
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }

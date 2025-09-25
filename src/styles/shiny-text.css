@@ -1,0 +1,51 @@
+@keyframes shinyTextLeftToRight {
+  0% {
+    background-position: 100% 0%;
+  }
+  100% {
+    background-position: -100% 0%;
+  }
+}
+
+@keyframes shinyTextRightToLeft {
+  0% {
+    background-position: -100% 0%;
+  }
+  100% {
+    background-position: 100% 0%;
+  }
+}
+
+@keyframes shinyTextTopToBottom {
+  0% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% -100%;
+  }
+}
+
+@keyframes shinyTextBottomToTop {
+  0% {
+    background-position: 0% -100%;
+  }
+  100% {
+    background-position: 0% 100%;
+  }
+}
+
+.shiny-text-ltr {
+  animation: shinyTextLeftToRight 3s linear infinite;
+}
+
+.shiny-text-rtl {
+  animation: shinyTextRightToLeft 3s linear infinite;
+}
+
+.shiny-text-ttb {
+  animation: shinyTextTopToBottom 3s linear infinite;
+}
+
+.shiny-text-btt {
+  animation: shinyTextBottomToTop 3s linear infinite;
+}
