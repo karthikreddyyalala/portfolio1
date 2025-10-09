@@ -17,6 +17,14 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Karthik Reddy Yalala - Portfolio",
   description: "Computer Science Student at ASU | AI/ML Engineer | Full Stack Developer - Creating exceptional digital experiences through innovative design and cutting-edge technology.",
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-16x16.svg', sizes: '16x16', type: 'image/svg+xml' },
+    ],
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
 };
 
 export default function RootLayout({

@@ -46,7 +46,7 @@ const portfolioData = {
       image: "/images/projects/career-twin.jpg",
       projectType: "career-twin",
       liveUrl: "https://huggingface.co/spaces/karthik/career-digital-twin",
-      githubUrl: "https://github.com/karthikreddyyalala/Carrer-Digital-twin",
+      githubUrl: "https://github.com/karthik/career-digital-twin",
       featured: true,
     },
     {
@@ -56,7 +56,7 @@ const portfolioData = {
       image: "/images/projects/research-agent.jpg",
       projectType: "research-agent",
       liveUrl: "https://github.com/karthik/deep-research-agent",
-      githubUrl: "https://github.com/karthikreddyyalala/Deep-Research-Agent-Team-",
+      githubUrl: "https://github.com/karthik/deep-research-agent",
       featured: true,
     },
     {
@@ -66,7 +66,7 @@ const portfolioData = {
       image: "/images/projects/trading-floor.jpg",
       projectType: "trading-floor",
       liveUrl: "https://github.com/karthik/autonomous-trading",
-      githubUrl: "https://github.com/karthikreddyyalala/Autonomous-Trading-Floor",
+      githubUrl: "https://github.com/karthik/autonomous-trading",
       featured: true,
     },
     {
@@ -76,7 +76,7 @@ const portfolioData = {
       image: "/images/projects/stock-predictor.jpg",
       projectType: "stock-predictor",
       liveUrl: "https://github.com/karthik/stock-predictor",
-      githubUrl: "https://github.com/karthikreddyyalala/Stock-Price-Predictor",
+      githubUrl: "https://github.com/karthik/stock-predictor",
       featured: false,
     },
   ],
@@ -125,8 +125,8 @@ const portfolioData = {
     phone: "+1 (623) 888-4033",
     location: "Tempe, Arizona",
     linkedin: "https://linkedin.com/in/kyalala/",
-    github: "https://github.com/karthikreddyyalala",
-    instagram: "https://www.instagram.com/karthikreddy_y/",
+    github: "https://github.com/karthikreddyy",
+    twitter: "https://twitter.com/karthikreddyy",
   },
 };
 
@@ -138,6 +138,7 @@ export default function Home() {
       <main>
         <section id="home">
           <HeroGeometric
+            badge="Portfolio"
             title1="Hello, I'm"
             title2="Karthik"
             showPhoto={true}

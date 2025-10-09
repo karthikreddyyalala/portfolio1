@@ -4,7 +4,7 @@ import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { Circle } from "lucide-react";
 import { ScrollReveal } from "./scroll-reveal";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
+import { BitmojiAvatar } from "@/components/BitmojiAvatar";
 
 
 function ElegantShape({
@@ -184,7 +184,7 @@ function HeroGeometric({
                             </motion.div>
                         </div>
 
-                        {/* Photo Section */}
+                        {/* Bitmoji Avatar Section */}
                         {showPhoto && (
                             <motion.div
                                 custom={3}
@@ -194,34 +194,6 @@ function HeroGeometric({
                                 className="flex justify-center lg:justify-end"
                             >
                                 <div className="relative">
-                                        {/* Simplified Glow effect */}
-                                        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500/15 to-rose-500/15 blur-xl" />
-                                    
-                                    {/* Photo container */}
-                                    <motion.div
-                                        className="relative w-64 h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden border-2 border-white/[0.2] bg-gradient-to-br from-white/[0.1] to-white/[0.05] backdrop-blur-sm"
-                                        whileHover={{ 
-                                            scale: 1.01,
-                                        }}
-                                        transition={{ duration: 0.3, ease: "easeOut" }}
-                                    >
-                                        <Image
-                                            src="/images/profile.jpg"
-                                            alt="Profile Photo"
-                                            fill
-                                            className="object-cover"
-                                            sizes="(max-width: 768px) 256px, (max-width: 1024px) 320px, 384px"
-                                        />
-                                        
-                                        {/* Shine effect */}
-                                        <motion.div
-                                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -skew-x-12"
-                                            initial={{ x: "-100%" }}
-                                            whileHover={{ x: "100%" }}
-                                            transition={{ duration: 0.8, ease: "easeInOut" }}
-                                        />
-                                    </motion.div>
-
                                     {/* Floating particles */}
                                     <motion.div
                                         className="absolute -top-4 -right-4 w-4 h-4 bg-indigo-400 rounded-full opacity-60"
@@ -246,6 +218,12 @@ function HeroGeometric({
                                             repeat: Infinity,
                                             delay: 1,
                                         }}
+                                    />
+                                    
+                                    <BitmojiAvatar
+                                        size="xl"
+                                        variant="hero"
+                                        delay={0.8}
                                     />
                                 </div>
                             </motion.div>

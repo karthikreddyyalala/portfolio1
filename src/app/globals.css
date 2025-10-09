@@ -231,8 +231,41 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
-/* Smooth transitions for better UX */
-* {
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+/* Remove any navigation indicators or dots */
+nav a::before,
+nav a::after,
+.nav-item::before,
+.nav-item::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Remove any active state indicators */
+nav a.active::before,
+nav a.active::after,
+nav a[aria-current="page"]::before,
+nav a[aria-current="page"]::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Remove any potential red dots or indicators */
+*[class*="indicator"]::before,
+*[class*="indicator"]::after,
+*[class*="dot"]::before,
+*[class*="dot"]::after,
+*[class*="bullet"]::before,
+*[class*="bullet"]::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Remove any red colored elements that might appear as dots */
+*[style*="red"]::before,
+*[style*="red"]::after,
+*[class*="red"]::before,
+*[class*="red"]::after {
+  content: none !important;
+  display: none !important;
 }
 
