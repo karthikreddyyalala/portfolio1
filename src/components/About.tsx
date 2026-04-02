@@ -21,35 +21,47 @@ export function About({
   location,
 }: AboutProps) {
   const fadeUpVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 16, filter: "blur(4px)" },
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
+      filter: "blur(0px)",
       transition: {
-        duration: 1,
-        delay: 0.2 + i * 0.1,
-        ease: [0.25, 0.4, 0.25, 1] as any,
+        duration: 0.9,
+        delay: 0.15 + i * 0.05,
+        ease: [0.16, 1, 0.3, 1] as any,
       },
     }),
   };
 
   return (
-    <section className="relative py-12 md:py-16 bg-[#030303] overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/[0.03] via-transparent to-rose-500/[0.03] blur-3xl" />
+    <section className="relative py-24 md:py-32 bg-[#030303] overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/[0.04] via-transparent to-rose-500/[0.04] blur-3xl" />
       
       <div className="relative z-10 container mx-auto px-4 md:px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <motion.h2 
+            <motion.h2
               className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 tracking-tight"
               variants={fadeUpVariants}
               initial="hidden"
-              animate="visible"
+              whileInView="visible"
+              viewport={{ once: true }}
             >
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-white to-rose-300">
                 About Me
               </span>
             </motion.h2>
+            <motion.p
+              className="text-white/50 text-base md:text-lg"
+              variants={fadeUpVariants}
+              custom={1}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              Get to know the person behind the code
+            </motion.p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -78,12 +90,12 @@ export function About({
                     {title}
                   </p>
                   <div className="flex flex-wrap gap-4 text-sm text-white/60 justify-center md:justify-start">
-                    <span className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-rose-500 rounded-full" />
+                    <span className="flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-white/70 text-xs tracking-wide">
+                      <div className="w-1.5 h-1.5 bg-rose-500 rounded-full" />
                       {experience}
                     </span>
-                    <span className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-indigo-500 rounded-full" />
+                    <span className="flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-white/70 text-xs tracking-wide">
+                      <div className="w-1.5 h-1.5 bg-indigo-500 rounded-full" />
                       {location}
                     </span>
                   </div>

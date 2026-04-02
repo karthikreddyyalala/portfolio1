@@ -6,7 +6,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-work-sans);
+  --font-display: var(--font-outfit);
   --font-mono: var(--font-jetbrains-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -120,6 +121,154 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* ─── UI/UX Pro Max — Semantic color tokens ──────────────────────────────── */
+:root {
+  --color-accent: #6366F1;
+  --color-accent-muted: rgba(99, 102, 241, 0.12);
+  --color-surface: rgba(255, 255, 255, 0.04);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-text-primary: rgba(255, 255, 255, 0.95);
+  --color-text-secondary: rgba(255, 255, 255, 0.60);
+  --color-text-muted: rgba(255, 255, 255, 0.40);
+  --color-destructive: #EF4444;
+  --spacing-base: 4px;
+  --touch-target: 44px;
+}
+
+/* Heading font (Outfit) vs body font (Work Sans) */
+h1, h2, h3, h4 {
+  font-family: var(--font-outfit), var(--font-work-sans), sans-serif;
+}
+
+/* Skip to main content — keyboard accessibility */
+.skip-link {
+  position: fixed;
+  top: -100%;
+  left: 1rem;
+  z-index: 99999;
+  padding: 0.625rem 1.25rem;
+  background: #6366F1;
+  color: white;
+  border-radius: 0 0 8px 8px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: top 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+/* Premium focus rings — WCAG 2.4.11 */
+:focus-visible {
+  outline: 2px solid rgba(99, 102, 241, 0.7);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Touch optimization — removes 300ms tap delay */
+button, [role="button"], a, input, select, textarea {
+  touch-action: manipulation;
+}
+
+/* Cursor pointer on all interactive non-button elements */
+[role="button"], [tabindex]:not([tabindex="-1"]) {
+  cursor: pointer;
+}
+
+/* Minimum touch target size — 44×44pt per Apple HIG / §2 */
+button, [role="button"] {
+  min-height: var(--touch-target);
+}
+
+/* Line height — §6 body text 1.5–1.75 */
+p, li, td {
+  line-height: 1.65;
+}
+
+/* Tabular numerics for stats/dates/numbers — §6 */
+.tabular, time, [data-stat] {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* Disabled state — §8 0.38–0.5 opacity */
+:disabled, [aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ─── Luxury design system additions ─────────────────────────────────────── */
+
+/* Grain/noise texture overlay — premium tactile feel */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 300px 300px;
+}
+
+/* Luxury heading typography — tight tracking, balanced wrapping */
+h1, h2, h3 {
+  text-wrap: balance;
+  letter-spacing: -0.02em;
+}
+h4, h5, h6 {
+  text-wrap: balance;
+}
+p {
+  text-wrap: pretty;
+}
+
+/* Luxury custom easing variable */
+:root {
+  --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* Premium active press state */
+.btn-luxury {
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.15s;
+}
+.btn-luxury:active {
+  transform: scale(0.98);
+}
+
+/* Tabular numerics for stats */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Diffusion shadow utility */
+.shadow-diffuse {
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.35);
+}
+
+/* Premium scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────── */
 
 /* Performance optimizations */
 * {
@@ -267,5 +416,25 @@ nav a[aria-current="page"]::after {
 *[class*="red"]::after {
   content: none !important;
   display: none !important;
+}
+
+/* Pulsing glow ring (orange, AWS brand color) */
+@keyframes pulse-ring {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(255, 153, 0, 0.25),
+                0 0 20px 4px rgba(255, 153, 0, 0.10);
+    opacity: 0.5;
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(255, 153, 0, 0.10),
+                0 0 32px 8px rgba(255, 153, 0, 0.20);
+    opacity: 1;
+  }
+}
+
+.badge-pulse-ring {
+  animation: pulse-ring 2.8s ease-in-out infinite;
+  border: 1.5px solid rgba(255, 153, 0, 0.25);
+  border-radius: 9999px;
 }
 

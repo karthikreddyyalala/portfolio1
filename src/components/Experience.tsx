@@ -3,30 +3,7 @@
 import { ScrollTimeline } from "@/components/lightswind/scroll-timeline";
 import { experienceData } from "@/data/experience";
 
-interface Experience {
-  title: string;
-  company: string;
-  location: string;
-  startDate: string;
-  endDate?: string;
-  description: string[];
-  technologies: string[];
-}
-
-interface Education {
-  degree: string;
-  institution: string;
-  location: string;
-  year: string;
-  description?: string;
-}
-
-interface ExperienceProps {
-  experiences?: Experience[];
-  education?: Education[];
-}
-
-export function Experience({ experiences, education }: ExperienceProps) {
+export function Experience() {
   return (
     <ScrollTimeline
       events={experienceData}

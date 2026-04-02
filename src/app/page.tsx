@@ -4,13 +4,14 @@ import { About } from "@/components/About";
 import { Skills } from "@/components/Skills";
 import { Projects } from "@/components/Projects";
 import { Experience } from "@/components/Experience";
+import { Certifications } from "@/components/Certifications";
 import { Contact } from "@/components/Contact";
 
 // Portfolio data - Karthik's information from resume
 const portfolioData = {
   name: "Karthik Reddy Yalala",
   title: "Computer Science Student & Software Engineer",
-  description: "Passionate Computer Science student at Arizona State University with a 4.0 GPA, specializing in AI/ML, web development, and data analysis. I build innovative solutions using modern technologies including React, Python, and AI frameworks. Currently working on cutting-edge projects involving LangChain, CrewAI, and autonomous systems.",
+  description: "Computer Science student at Arizona State University (4.0 GPA) with strong foundations in software engineering, algorithms, and system design. I build scalable backend systems, RESTful APIs, and full-stack applications using modern technologies such as Node.js, Python, and PostgreSQL. Actively seeking Software Engineering internship opportunities to contribute to production-grade systems.",
   experience: "2+ Years Experience",
   location: "Tempe, Arizona",
   
@@ -47,6 +48,14 @@ const portfolioData = {
       projectType: "career-twin",
       liveUrl: "https://huggingface.co/spaces/karthik/career-digital-twin",
       githubUrl: "https://github.com/karthikreddyyalala/Carrer-Digital-twin",
+      featured: true,
+    },
+    {
+      title: "Chatify",
+      description: "Chatify is a full-stack, real-time communication application designed to deliver a seamless and engaging user experience similar to modern messaging platforms. Built with a robust Node.js and Express backend, it leverages Socket.io to enable instantaneous, bi-directional event-based communication. This project demonstrates the ability to architect and deploy a secure, scalable, and feature-rich web application from the ground up.",
+      technologies: ["Node.js", "Express", "Socket.io", "Real-time Communication", "Full-stack"],
+      image: "/images/projects/chatify.png",
+      projectType: "chatify",
       featured: true,
     },
     {
@@ -119,23 +128,35 @@ const portfolioData = {
       description: "GPA: 4.0 | Dean's List: Fall 2023, Spring 2024, Fall 2024, Spring 2025. Relevant Coursework: Algorithms, Data Structures, Object-Oriented Programming, Operating Systems, Software Engineering, Cybersecurity, Artificial Intelligence, Machine Learning, Web Development, Discrete Mathematics.",
     },
   ],
-  
+
+  certifications: [
+    {
+      name: "AWS Certified Cloud Practitioner",
+      issuer: "Amazon Web Services",
+      badgeImage: "/images/certifications/aws-certified-cloud-practitioner.png",
+      year: "2025",
+    },
+  ],
+
   contactInfo: {
     email: "karthikreddyy386@gmail.com",
     phone: "+1 (623) 888-4033",
     location: "Tempe, Arizona",
     linkedin: "https://linkedin.com/in/kyalala/",
-    github: "https://github.com/karthikreddyy",
+    github: "https://github.com/karthikreddyyalala",
     twitter: "https://twitter.com/karthikreddyy",
   },
 };
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#030303]">
+    <div className="min-h-[100dvh] bg-[#030303]">
+      {/* Skip to main content — keyboard/screen reader accessibility */}
+      <a href="#main-content" className="skip-link">Skip to main content</a>
+
       <Navigation name={portfolioData.name} />
-      
-      <main>
+
+      <main id="main-content">
         <section id="home">
           <HeroGeometric
             badge="Portfolio"
@@ -158,22 +179,27 @@ export default function Home() {
         <section id="skills">
           <Skills skills={portfolioData.skills} />
         </section>
-        
+
+        <Certifications certifications={portfolioData.certifications} />
+
         <section id="projects">
           <Projects projects={portfolioData.projects} />
         </section>
-        
+
         <section id="experience">
-          <Experience
-            experiences={portfolioData.experiences}
-            education={portfolioData.education}
-          />
+          <Experience />
         </section>
-        
+
         <section id="contact">
           <Contact contactInfo={portfolioData.contactInfo} />
         </section>
       </main>
+
+      <footer className="border-t border-white/[0.06] bg-[#030303] py-8 text-center">
+        <p className="text-white/30 text-sm">
+          © {new Date().getFullYear()} Karthik Reddy Yalala. Built with Next.js & Tailwind CSS.
+        </p>
+      </footer>
     </div>
   );
 }

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+  <!-- AWS smile: curved orange arrow -->
+  <path stroke="#FF9900" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"
+        d="M8 48 Q32 16 56 48"/>
+  <path fill="#FF9900" d="M50 42 L60 48 L50 54 Z"/>
+</svg>

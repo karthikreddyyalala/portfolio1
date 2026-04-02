@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
-import { Circle } from "lucide-react";
+import { Circle, Download } from "lucide-react";
 import { ScrollReveal } from "./scroll-reveal";
 import { cn } from "@/lib/utils";
 import { BitmojiAvatar } from "@/components/BitmojiAvatar";
@@ -79,21 +79,22 @@ function HeroGeometric({
     showPhoto?: boolean;
 }) {
     const fadeUpVariants = {
-        hidden: { opacity: 0, y: 20 },
+        hidden: { opacity: 0, y: 16, filter: "blur(4px)" },
         visible: (i: number) => ({
             opacity: 1,
             y: 0,
+            filter: "blur(0px)",
             transition: {
-                duration: 0.8,
-                delay: 0.3 + i * 0.1,
-                ease: [0.25, 0.4, 0.25, 1] as any,
+                duration: 0.9,
+                delay: 0.2 + i * 0.05,
+                ease: [0.16, 1, 0.3, 1] as any,
             },
         }),
     };
 
     return (
-        <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-[#030303]">
-            <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/[0.05] via-transparent to-rose-500/[0.05] blur-3xl" />
+        <div className="relative min-h-[100dvh] w-full flex items-center justify-center overflow-hidden bg-[#030303]">
+            <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/[0.04] via-transparent to-rose-500/[0.04] blur-3xl" />
 
             <div className="absolute inset-0 overflow-hidden">
                 <ElegantShape
@@ -125,37 +126,37 @@ function HeroGeometric({
                                 variants={fadeUpVariants}
                                 initial="hidden"
                                 animate="visible"
-                                className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] mb-8 md:mb-12"
+                                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.1] mb-8 md:mb-12"
                             >
-                                <Circle className="h-2 w-2 fill-rose-500/80" />
-                                <span className="text-sm text-white/60 tracking-wide">
+                                <Circle className="h-1.5 w-1.5 fill-rose-400/90" />
+                                <span className="text-[11px] font-semibold text-white/50 tracking-[0.18em] uppercase">
                                     {badge}
                                 </span>
                             </motion.div>
 
-                            <motion.h1 
-                                className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 md:mb-8 tracking-tight"
+                            <motion.h2
+                                className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-2 md:mb-3 tracking-tighter leading-none"
                                 variants={fadeUpVariants}
                                 initial="hidden"
                                 animate="visible"
                             >
-                                <span className="bg-clip-text text-transparent bg-gradient-to-b from-white to-white/80">
+                                <span className="text-white">
                                     {title1}
                                 </span>
-                            </motion.h1>
-                            
-                            <motion.h1 
-                                className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 md:mb-8 tracking-tight"
+                            </motion.h2>
+
+                            <motion.h1
+                                className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 md:mb-8 tracking-tighter leading-none"
                                 variants={fadeUpVariants}
                                 initial="hidden"
                                 animate="visible"
                             >
-                                <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-white to-rose-300">
+                                <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-white/95 to-rose-300">
                                     {title2}
                                 </span>
                             </motion.h1>
 
-                            {/* Tags below the name */}
+                            {/* Headline below the name */}
                             <motion.div
                                 custom={1}
                                 variants={fadeUpVariants}
@@ -163,11 +164,8 @@ function HeroGeometric({
                                 animate="visible"
                                 className="flex flex-wrap justify-center gap-3 mb-8"
                             >
-                                <span className="px-4 py-2 bg-white/[0.08] border border-white/[0.15] rounded-full text-white/80 text-sm font-medium">
-                                    Data Analyst
-                                </span>
-                                <span className="px-4 py-2 bg-white/[0.08] border border-white/[0.15] rounded-full text-white/80 text-sm font-medium">
-                                    AI/ML Engineer
+                                <span className="px-4 py-1.5 bg-white/[0.04] border border-white/[0.1] rounded-full text-white/50 text-[11px] font-semibold tracking-[0.14em] uppercase">
+                                    Computer Science Student · Software Engineer
                                 </span>
                             </motion.div>
 
@@ -177,10 +175,23 @@ function HeroGeometric({
                                 initial="hidden"
                                 animate="visible"
                             >
-                                <p className="text-base sm:text-lg md:text-xl text-white/40 mb-8 leading-relaxed font-light tracking-wide max-w-xl mx-auto lg:mx-0 px-4 lg:px-0">
-                                    Crafting exceptional digital experiences through
-                                    innovative design and cutting-edge technology.
+                                <p className="text-base sm:text-lg md:text-xl text-white/50 mb-6 leading-relaxed font-light tracking-wide max-w-xl mx-auto lg:mx-0 px-4 lg:px-0">
+                                    CS student at ASU building AI agents, full-stack apps,
+                                    and scalable backend systems.
                                 </p>
+                                <a
+                                    href="/resume.pdf"
+                                    download="KarthikReddy-Yalala-Resume.pdf"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="group inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/[0.06] border border-white/[0.1] text-white/80 text-sm font-medium hover:bg-white/[0.11] hover:border-white/25 hover:text-white active:scale-[0.98] transition-all duration-300"
+                                    style={{ transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)" }}
+                                >
+                                    <span className="w-6 h-6 rounded-full bg-white/[0.08] flex items-center justify-center group-hover:bg-white/[0.13] transition-colors duration-300">
+                                        <Download className="w-3 h-3" />
+                                    </span>
+                                    Download Resume
+                                </a>
                             </motion.div>
                         </div>
 

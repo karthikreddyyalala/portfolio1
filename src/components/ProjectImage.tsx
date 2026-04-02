@@ -150,6 +150,18 @@ export function ProjectImage({ projectType, className }: ProjectImageProps) {
           </div>
         );
 
+      case "chatify":
+        return (
+          <div className="relative w-full h-full bg-gradient-to-br from-slate-900/90 to-blue-900/90 rounded-lg overflow-hidden">
+            <img
+              src="/images/projects/chatify.png"
+              alt="Chatify Real-Time Messaging Platform"
+              className="w-full h-full object-cover object-center rounded-lg"
+            />
+            <div className="absolute inset-0 bg-black/10 rounded-lg"></div>
+          </div>
+        );
+
       case "stock-predictor":
         return (
           <div className="relative w-full h-full bg-gradient-to-br from-violet-500/20 to-pink-600/20 rounded-lg overflow-hidden">
@@ -241,6 +253,7 @@ export function ProjectImage({ projectType, className }: ProjectImageProps) {
             {projectType === "research-agent" && "Multi-Agent Research System"}
             {projectType === "trading-floor" && "Autonomous Trading Platform"}
             {projectType === "stock-predictor" && "LSTM Neural Network"}
+            {projectType === "chatify" && "Real-Time Messaging Platform"}
           </motion.div>
         </div>
       </motion.div>
