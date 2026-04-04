@@ -35,7 +35,7 @@ export function About({
   };
 
   return (
-    <section className="relative py-24 md:py-32 bg-[#030303] overflow-hidden">
+    <section className="relative py-24 md:py-32 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/[0.04] via-transparent to-rose-500/[0.04] blur-3xl" />
       
       <div className="relative z-10 container mx-auto px-4 md:px-6">

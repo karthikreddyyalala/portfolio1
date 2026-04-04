@@ -41,7 +41,7 @@ export function Projects({ projects }: ProjectsProps) {
   const otherProjects = projects.filter(project => !project.featured);
 
   return (
-    <section className="relative py-24 md:py-32 bg-[#030303] overflow-hidden">
+    <section className="relative py-24 md:py-32 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-violet-500/[0.03] via-transparent to-amber-500/[0.03] blur-3xl" />
       
       <div className="relative z-10 container mx-auto px-4 md:px-6">

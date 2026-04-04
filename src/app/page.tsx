@@ -1,7 +1,7 @@
 import { HeroGeometric } from "@/components/ui/shape-landing-hero";
 import { Navigation } from "@/components/Navigation";
 import { About } from "@/components/About";
-import { Skills } from "@/components/Skills";
+import { SplineKeyboard } from "@/components/SplineKeyboard";
 import { Projects } from "@/components/Projects";
 import { Experience } from "@/components/Experience";
 import { Certifications } from "@/components/Certifications";
@@ -165,7 +165,7 @@ export default function Home() {
             showPhoto={true}
           />
         </section>
-        
+
         <section id="about">
           <About
             name={portfolioData.name}
@@ -175,12 +175,14 @@ export default function Home() {
             location={portfolioData.location}
           />
         </section>
-        
-        <section id="skills">
-          <Skills skills={portfolioData.skills} />
+
+        <section id="skills" className="bg-[#030303]">
+          <SplineKeyboard />
         </section>
 
-        <Certifications certifications={portfolioData.certifications} />
+        <section id="certifications">
+          <Certifications certifications={portfolioData.certifications} />
+        </section>
 
         <section id="projects">
           <Projects projects={portfolioData.projects} />

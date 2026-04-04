@@ -41,7 +41,7 @@ export function Contact({ contactInfo }: ContactProps) {
   ].filter(link => link.href);
 
   return (
-    <section className="relative py-24 md:py-32 bg-[#030303] overflow-hidden">
+    <section className="relative py-24 md:py-32 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/[0.03] via-transparent to-indigo-500/[0.03] blur-3xl" />
       
       <div className="relative z-10 container mx-auto px-4 md:px-6">

@@ -19,7 +19,7 @@ interface CertificationsProps {
 
 function CertBadgeCard({ cert, index }: { cert: Certification; index: number }) {
   const cardInner = (
-    <div className="group relative w-full max-w-[320px] rounded-2xl overflow-hidden
+    <div className="group relative w-full max-w-[320px] rounded-2xl bg-[#030303] overflow-hidden
       bg-white/[0.04] border border-white/[0.07]
       hover:border-[#FF9900]/35
       hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.12)]
@@ -98,7 +98,7 @@ export function Certifications({ certifications }: CertificationsProps) {
   return (
     <section
       id="certifications"
-      className="relative py-24 md:py-28 bg-[#030303] overflow-hidden"
+      className="relative py-24 md:py-28 overflow-hidden"
     >
       {/* Subtle background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#FF9900]/[0.03] via-transparent to-purple-500/[0.03] blur-3xl pointer-events-none" />
