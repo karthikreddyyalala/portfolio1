@@ -293,13 +293,38 @@ p {
 
 /* ─────────────────────────────────────────────────────────────────────────── */
 
-/* Performance optimizations */
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
 * {
+  box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Reduce motion for better performance */
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.transform-gpu {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -308,99 +333,6 @@ p {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-}
-
-/* Optimize rendering */
-.gpu-accelerated {
-  transform: translateZ(0);
-  will-change: transform;
-}
-
-/* Performance optimizations */
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-/* Optimize animations */
-@media (prefers-reduced-motion: no-preference) {
-  .animate-reduce-motion {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-/* Reduce paint complexity */
-.blur-effect {
-  will-change: filter;
-}
-
-/* Optimize transforms */
-.transform-gpu {
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  perspective: 1000px;
-}
-
-/* Disable animations on low-end devices */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* Optimize for mobile */
-@media (max-width: 768px) {
-  .blur-xl {
-    filter: blur(8px);
-  }
-  
-  .blur-lg {
-    filter: blur(4px);
-  }
-  
-  .backdrop-blur-md {
-    backdrop-filter: blur(4px);
-  }
-}
-
-/* Reduce paint complexity */
-* {
-  will-change: auto;
-}
-
-/* Optimize scroll performance */
-html {
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Additional performance optimizations for smoother reloads */
-* {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Optimize animations for smoother performance */
-.motion-safe\:animate-none {
-  animation: none !important;
-}
-
-/* Reduce layout thrashing */
-img, video {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Optimize rendering */
-body {
-  text-rendering: optimizeLegibility;
-  -webkit-text-size-adjust: 100%;
 }
 
 /* Remove any navigation indicators or dots */

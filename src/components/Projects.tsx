@@ -53,7 +53,6 @@ export function Projects({ projects }: ProjectsProps) {
               variant="default"
               enableBlur={true}
               baseOpacity={0.1}
-              baseRotation={1}
               blurStrength={2}
               staggerDelay={0.06}
               springConfig={{
@@ -71,7 +70,6 @@ export function Projects({ projects }: ProjectsProps) {
               variant="muted"
               enableBlur={true}
               baseOpacity={0.2}
-              baseRotation={0.5}
               blurStrength={1}
               staggerDelay={0.03}
               springConfig={{
@@ -111,7 +109,6 @@ export function Projects({ projects }: ProjectsProps) {
                       variant="muted"
                       enableBlur={true}
                       baseOpacity={0.2}
-                      baseRotation={0.5}
                       blurStrength={1}
                       staggerDelay={0.04}
                       springConfig={{
@@ -217,7 +214,6 @@ export function Projects({ projects }: ProjectsProps) {
                         variant="muted"
                         enableBlur={true}
                         baseOpacity={0.2}
-                        baseRotation={0.5}
                         blurStrength={1}
                         staggerDelay={0.03}
                         springConfig={{

@@ -88,6 +88,15 @@ const portfolioData = {
       githubUrl: "https://github.com/karthikreddyyalala/Stock-Price-Predictor",
       featured: false,
     },
+    {
+      title: "LeetCode Tracker",
+      description: "A personal LeetCode progress tracker to log solved problems, filter by difficulty and topic, and visualize consistency over time. Built to stay accountable and spot weak areas fast.",
+      technologies: ["JavaScript", "HTML", "CSS"],
+      image: "/images/projects/leetcode-tracker.jpg",
+      projectType: "leetcode-tracker",
+      githubUrl: "https://github.com/karthikreddyyalala/Leetcode-tracker",
+      featured: false,
+    },
   ],
   
   experiences: [
