@@ -46,35 +46,32 @@ export const useSounds = () => {
     };
   }, []);
 
-  const playPressSound = useCallback(() => {
+  const playBuffer = useCallback((buffer: AudioBuffer) => {
     const ctx = audioContextRef.current;
-    const buffer = pressBufferRef.current;
-    if (!ctx || !buffer) return;
+    if (!ctx) return;
 
-    const source = ctx.createBufferSource();
-    source.buffer = buffer;
+    const fire = () => {
+      const source = ctx.createBufferSource();
+      source.buffer = buffer;
+      source.detune.value = Math.random() * 200 - 100;
+      source.connect(ctx.destination);
+      source.start();
+    };
 
-    const detune = Math.random() * 200 - 100;
-    source.detune.value = detune;
-
-    source.connect(ctx.destination);
-    source.start();
+    if (ctx.state === "suspended") {
+      ctx.resume().then(fire);
+    } else {
+      fire();
+    }
   }, []);
+
+  const playPressSound = useCallback(() => {
+    if (pressBufferRef.current) playBuffer(pressBufferRef.current);
+  }, [playBuffer]);
 
   const playReleaseSound = useCallback(() => {
-    const ctx = audioContextRef.current;
-    const buffer = releaseBufferRef.current;
-    if (!ctx || !buffer) return;
-
-    const source = ctx.createBufferSource();
-    source.buffer = buffer;
-
-    const detune = Math.random() * 200 - 100;
-    source.detune.value = detune;
-
-    source.connect(ctx.destination);
-    source.start();
-  }, []);
+    if (releaseBufferRef.current) playBuffer(releaseBufferRef.current);
+  }, [playBuffer]);
 
   return { playPressSound, playReleaseSound };
 };
