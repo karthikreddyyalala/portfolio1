@@ -1,8 +1,7 @@
 "use client";
 
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import { motion } from "framer-motion";
 import { Circle, Download } from "lucide-react";
-import { ScrollReveal } from "./scroll-reveal";
 import { cn } from "@/lib/utils";
 import { BitmojiAvatar } from "@/components/BitmojiAvatar";
 
@@ -54,7 +53,7 @@ function ElegantShape({
                         "absolute inset-0 rounded-full",
                         "bg-gradient-to-r to-transparent",
                         gradient,
-                        "backdrop-blur-[2px] border-2 border-white/[0.15]",
+                        "border border-white/[0.12]",
                         "shadow-[0_8px_32px_0_rgba(255,255,255,0.1)]",
                         "after:absolute after:inset-0 after:rounded-full",
                         "after:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.2),transparent_70%)]"
@@ -69,13 +68,11 @@ function HeroGeometric({
     badge,
     title1 = "Elevate Your Digital Vision",
     title2 = "Crafting Exceptional Websites",
-    subtitle,
     showPhoto = false,
 }: {
     badge?: string;
     title1?: string;
     title2?: string;
-    subtitle?: string;
     showPhoto?: boolean;
 }) {
     const fadeUpVariants = {
@@ -205,32 +202,6 @@ function HeroGeometric({
                                 className="flex justify-center lg:justify-end"
                             >
                                 <div className="relative">
-                                    {/* Floating particles */}
-                                    <motion.div
-                                        className="absolute -top-4 -right-4 w-4 h-4 bg-indigo-400 rounded-full opacity-60"
-                                        animate={{
-                                            y: [0, -15, 0],
-                                            opacity: [0.6, 1, 0.6],
-                                        }}
-                                        transition={{
-                                            duration: 3,
-                                            repeat: Infinity,
-                                            delay: 0.5,
-                                        }}
-                                    />
-                                    <motion.div
-                                        className="absolute -bottom-2 -left-2 w-3 h-3 bg-rose-400 rounded-full opacity-60"
-                                        animate={{
-                                            y: [0, -12, 0],
-                                            opacity: [0.6, 1, 0.6],
-                                        }}
-                                        transition={{
-                                            duration: 2.5,
-                                            repeat: Infinity,
-                                            delay: 1,
-                                        }}
-                                    />
-                                    
                                     <BitmojiAvatar
                                         size="xl"
                                         variant="hero"
