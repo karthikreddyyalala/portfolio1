@@ -39,7 +39,6 @@ export function Skills({ skills }: SkillsProps) {
             variant="default"
             enableBlur={true}
             baseOpacity={0.1}
-            baseRotation={1}
             blurStrength={2}
             staggerDelay={0.06}
             springConfig={{ damping: 25, stiffness: 100, mass: 1 }}

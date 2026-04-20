@@ -110,7 +110,6 @@ export function About({
                 variant="muted"
                 enableBlur={true}
                 baseOpacity={0.2}
-                baseRotation={0.5}
                 blurStrength={1}
                 staggerDelay={0.04}
                 springConfig={{

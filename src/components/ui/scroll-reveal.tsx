@@ -1,40 +1,22 @@
 "use client";
 
-import React, { useRef, useMemo } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { cn } from "../../lib/utils";
 
 export interface ScrollRevealProps {
   children: React.ReactNode;
-  /** Custom container className */
   containerClassName?: string;
-  /** Custom text className */
   textClassName?: string;
-  /** Enable blur animation effect */
   enableBlur?: boolean;
-  /** Base opacity when text is out of view */
   baseOpacity?: number;
-  /** Base rotation angle in degrees */
-  baseRotation?: number;
-  /** Blur strength in pixels */
   blurStrength?: number;
-  /** Animation delay between words in seconds */
   staggerDelay?: number;
-  /** Viewport threshold for triggering animation */
   threshold?: number;
-  /** Animation duration in seconds */
   duration?: number;
-  /** Spring animation configuration */
-  springConfig?: {
-    damping?: number;
-    stiffness?: number;
-    mass?: number;
-  };
-  /** Text size variant */
+  springConfig?: { damping?: number; stiffness?: number; mass?: number };
   size?: "sm" | "md" | "lg" | "xl" | "2xl";
-  /** Text alignment */
   align?: "left" | "center" | "right";
-  /** Color variant */
   variant?: "default" | "muted" | "accent" | "primary";
 }
 
@@ -63,148 +45,34 @@ export function ScrollReveal({
   children,
   containerClassName,
   textClassName,
-  enableBlur = true,
-  baseOpacity = 0.1,
-  baseRotation = 3,
-  blurStrength = 4,
-  staggerDelay = 0.05,
-  threshold = 0.5,
-  duration = 0.8,
-  springConfig = {
-    damping: 25,
-    stiffness: 100,
-    mass: 1,
-  },
+  threshold = 0.2,
+  duration = 0.7,
   size = "lg",
   align = "left",
   variant = "default",
 }: ScrollRevealProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, {
-    amount: threshold,
-    once: false
-  });
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, amount: threshold });
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-
-  // Transform rotation based on scroll
-  const rotation = useTransform(
-    scrollYProgress,
-    [0, 0.5, 1],
-    [baseRotation, 0, 0]
+  const sharedClass = cn(
+    "leading-relaxed font-semibold",
+    sizeClasses[size],
+    alignClasses[align],
+    variantClasses[variant],
+    textClassName,
   );
 
-  // Split text into words and spaces, ensuring each part is an object
-  const splitText = useMemo(() => {
-    const text = typeof children === "string" ? children : "";
-    if (!text) return [];
-    return text.split(/(\s+)/).map((part, index) => {
-      return {
-        value: part,
-        isSpace: part.match(/^\s+$/) && part.length > 0,
-        originalIndex: index,
-      };
-    }).filter(item => item.value.length > 0);
-  }, [children]);
-
-  // Check if children is a string for word-by-word animation
-  const isTextContent = typeof children === "string";
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: staggerDelay,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const wordVariants = {
-    hidden: {
-      opacity: baseOpacity,
-      filter: enableBlur ? `blur(${blurStrength}px)` : "blur(0px)",
-      y: 20,
-    },
-    visible: {
-      opacity: 1,
-      filter: "blur(0px)",
-      y: 0,
-      transition: {
-        ...springConfig,
-        duration,
-      },
-    },
-  };
-
   return (
-    <motion.div
-      ref={containerRef}
-      style={{ rotate: rotation }}
-      className={cn(
-        "my-5 transform-gpu",
-        containerClassName
-      )}
-    >
-      {isTextContent ? (
-        <motion.p
-          className={cn(
-            "leading-relaxed font-semibold",
-            sizeClasses[size],
-            alignClasses[align],
-            variantClasses[variant],
-            textClassName
-          )}
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-        >
-          {splitText.map((item) => (
-            item.isSpace ? (
-              <span key={`space-${item.originalIndex}`}>{item.value}</span>
-            ) : (
-              <motion.span
-                key={`word-${item.originalIndex}`}
-                className="inline-block"
-                variants={wordVariants}
-              >
-                {item.value}
-              </motion.span>
-            )
-          ))}
-        </motion.p>
-      ) : (
-        <motion.div
-          className={cn(
-            "leading-relaxed font-semibold",
-            sizeClasses[size],
-            alignClasses[align],
-            variantClasses[variant],
-            textClassName
-          )}
-          initial={{ opacity: baseOpacity, y: 20, filter: enableBlur ? `blur(${blurStrength}px)` : "blur(0px)" }}
-          animate={isInView ? { 
-            opacity: 1, 
-            y: 0, 
-            filter: "blur(0px)",
-            transition: {
-              ...springConfig,
-              duration,
-            }
-          } : { 
-            opacity: baseOpacity, 
-            y: 20, 
-            filter: enableBlur ? `blur(${blurStrength}px)` : "blur(0px)" 
-          }}
-        >
-          {children}
-        </motion.div>
-      )}
-    </motion.div>
+    <div ref={ref} className={cn("my-5", containerClassName)}>
+      <motion.div
+        className={sharedClass}
+        initial={{ opacity: 0, y: 18 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+        transition={{ duration, ease: [0.16, 1, 0.3, 1] }}
+      >
+        {children}
+      </motion.div>
+    </div>
   );
 }
 
