@@ -48,7 +48,7 @@ export function SplineKeyboard() {
       return el && (el.tagName === "INPUT" || el.tagName === "TEXTAREA");
     };
 
-    splineApp.addEventListener("mouseHover", (e: SplineEvent) => {
+    const onHover = (e: SplineEvent) => {
       if (e.target.name === "body" || e.target.name === "platform") {
         if (selectedSkillRef.current) playReleaseSound();
         selectedSkillRef.current = null;
@@ -64,9 +64,9 @@ export function SplineKeyboard() {
           try { splineApp.setVariable("heading", skill.label); splineApp.setVariable("desc", skill.shortDescription); } catch {}
         }
       }
-    });
+    };
 
-    splineApp.addEventListener("keyDown", (e: SplineEvent) => {
+    const onKeyDown = (e: SplineEvent) => {
       if (isInputFocused()) return;
       const skill = SKILLS[e.target.name as SkillNames];
       if (skill) {
@@ -75,13 +75,23 @@ export function SplineKeyboard() {
         setSelectedSkill(skill);
         try { splineApp.setVariable("heading", skill.label); splineApp.setVariable("desc", skill.shortDescription); } catch {}
       }
-    });
+    };
 
-    splineApp.addEventListener("keyUp", () => {
+    const onKeyUp = () => {
       if (isInputFocused()) return;
       playReleaseSound();
       try { splineApp.setVariable("heading", ""); splineApp.setVariable("desc", ""); } catch {}
-    });
+    };
+
+    splineApp.addEventListener("mouseHover", onHover);
+    splineApp.addEventListener("keyDown", onKeyDown);
+    splineApp.addEventListener("keyUp", onKeyUp);
+
+    return () => {
+      splineApp.removeEventListener("mouseHover", onHover);
+      splineApp.removeEventListener("keyDown", onKeyDown);
+      splineApp.removeEventListener("keyUp", onKeyUp);
+    };
   }, [splineApp]);
 
   return (

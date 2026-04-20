@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import {
   motion,
   useScroll,
   useTransform,
   useSpring,
+  useMotionValueEvent,
 } from "framer-motion";
 import { cn } from "../../lib/utils";
 import { Calendar } from "lucide-react";
@@ -109,19 +110,12 @@ export const ScrollTimeline = ({
     [parallaxIntensity * 100, -parallaxIntensity * 100]
   );
 
-  useEffect(() => {
-    const unsubscribe = scrollYProgress.onChange((v) => {
-      const newIndex = Math.floor(v * events.length);
-      if (
-        newIndex !== activeIndex &&
-        newIndex >= 0 &&
-        newIndex < events.length
-      ) {
-        setActiveIndex(newIndex);
-      }
-    });
-    return () => unsubscribe();
-  }, [scrollYProgress, events.length, activeIndex]);
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    const newIndex = Math.floor(v * events.length);
+    if (newIndex !== activeIndex && newIndex >= 0 && newIndex < events.length) {
+      setActiveIndex(newIndex);
+    }
+  });
 
   const getCardVariants = (index: number) => {
     const baseDelay =
@@ -160,10 +154,10 @@ export const ScrollTimeline = ({
         transition: {
           duration: 0.7,
           delay: baseDelay,
-          ease: "easeOut",
+          ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
         },
       },
-      viewport: { once: false, margin: "-100px" },
+      viewport: { once: true, margin: "-100px" },
     };
   };
 
@@ -372,7 +366,7 @@ export const ScrollTimeline = ({
                     variants={getCardVariants(index)}
                     initial="initial"
                     whileInView="whileInView"
-                    viewport={{ once: false, margin: "-100px" }}
+                    viewport={{ once: true, margin: "-100px" }}
                     style={parallaxIntensity > 0 ? { y: baseYOffset } : undefined}
                     whileHover={{ 
                       scale: 1.02, 
