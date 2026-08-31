@@ -1,0 +1,170 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { profile } from "@/content/profile";
+
+const LINKS = [
+  { id: "work-avis", label: "Avis" },
+  { id: "work", label: "Work" },
+  { id: "stack", label: "Stack" },
+  { id: "path", label: "Path" },
+  { id: "contact", label: "Contact" },
+];
+
+export function Nav() {
+  const [active, setActive] = useState<string>("");
+  const [lifted, setLifted] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  /**
+   * Active-section tracking and the scrolled state both run on
+   * IntersectionObserver rather than a scroll listener. The previous
+   * implementation called setState on every scroll frame.
+   */
+  useEffect(() => {
+    const sections = LINKS.map((l) => document.getElementById(l.id)).filter(
+      (el): el is HTMLElement => Boolean(el)
+    );
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActive(visible.target.id);
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: [0, 0.25, 0.5] }
+    );
+
+    sections.forEach((s) => observer.observe(s));
+
+    // A zero-height sentinel at the top of the page tells us when we have
+    // scrolled away from it — no scroll handler needed.
+    const sentinel = document.createElement("div");
+    sentinel.setAttribute("aria-hidden", "true");
+    sentinel.style.cssText =
+      "position:absolute;top:0;height:80px;width:1px;pointer-events:none;";
+    document.body.prepend(sentinel);
+
+    const topObserver = new IntersectionObserver(
+      ([e]) => setLifted(!e.isIntersecting),
+      { threshold: 0 }
+    );
+    topObserver.observe(sentinel);
+
+    return () => {
+      observer.disconnect();
+      topObserver.disconnect();
+      sentinel.remove();
+    };
+  }, []);
+
+  // Lock body scroll while the mobile sheet is open.
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  return (
+    <header
+      className="fixed inset-x-0 top-0 z-50 transition-colors duration-300"
+      style={{
+        background: lifted ? "rgba(11,11,12,0.92)" : "transparent",
+        borderBottom: `1px solid ${lifted ? "var(--line)" : "transparent"}`,
+      }}
+    >
+      <nav className="shell flex h-[68px] items-center justify-between">
+        <a
+          href="#top"
+          className="mono text-[13px] tracking-tight text-[var(--text)] transition-colors hover:text-[var(--accent)]"
+        >
+          KRY<span className="text-[var(--accent)]">.</span>
+        </a>
+
+        <ul className="hidden items-center gap-1 md:flex">
+          {LINKS.map((link) => (
+            <li key={link.id}>
+              <a
+                href={`#${link.id}`}
+                aria-current={active === link.id ? "true" : undefined}
+                className="relative block px-3.5 py-2 text-[13px] transition-colors duration-200"
+                style={{
+                  color: active === link.id ? "var(--text)" : "var(--muted)",
+                }}
+              >
+                {link.label}
+                {active === link.id && (
+                  <span
+                    aria-hidden
+                    className="absolute inset-x-3.5 -bottom-px h-px"
+                    style={{ background: "var(--accent)" }}
+                  />
+                )}
+              </a>
+            </li>
+          ))}
+          <li className="ml-3">
+            <a
+              href={profile.contact.resume}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-[var(--line-hi)] px-4 py-1.5 text-[13px] text-[var(--text)] transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)] active:scale-[0.97]"
+            >
+              Résumé
+            </a>
+          </li>
+        </ul>
+
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+          aria-label={open ? "Close menu" : "Open menu"}
+          className="flex h-9 w-9 items-center justify-center md:hidden"
+        >
+          <span className="relative block h-3 w-5">
+            <span
+              className="absolute left-0 block h-px w-5 bg-[var(--text)] transition-transform duration-300"
+              style={{ top: open ? 6 : 0, transform: open ? "rotate(45deg)" : "none" }}
+            />
+            <span
+              className="absolute left-0 block h-px w-5 bg-[var(--text)] transition-transform duration-300"
+              style={{ top: open ? 6 : 12, transform: open ? "rotate(-45deg)" : "none" }}
+            />
+          </span>
+        </button>
+      </nav>
+
+      {open && (
+        <div className="border-t border-[var(--line)] bg-[var(--bg)] md:hidden">
+          <ul className="shell flex flex-col py-3">
+            {LINKS.map((link) => (
+              <li key={link.id}>
+                <a
+                  href={`#${link.id}`}
+                  onClick={() => setOpen(false)}
+                  className="block border-b border-[var(--line)] py-3.5 text-[15px] text-[var(--muted)]"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+            <li>
+              <a
+                href={profile.contact.resume}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+                className="block py-3.5 text-[15px] text-[var(--accent)]"
+              >
+                Résumé ↗
+              </a>
+            </li>
+          </ul>
+        </div>
+      )}
+    </header>
+  );
+}

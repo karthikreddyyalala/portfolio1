@@ -1,331 +1,178 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+/* ============================================================
+   THEME TOKENS — the entire palette lives here.
+   To reskin the site, change these values and nothing else.
+   ============================================================ */
+:root {
+  --bg: #0b0b0c;
+  --bg-deep: #08080a;
+  --surface: #141416;
+  --surface-hi: #1b1b1e;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-hi: rgba(255, 255, 255, 0.14);
+
+  --text: #edede9;
+  --muted: #8f8f89;
+  --faint: #5f5f5b;
+
+  --accent: #c8873e;
+  --accent-hi: #e0a05a;
+  --accent-dim: rgba(200, 135, 62, 0.14);
+
+  --radius: 14px;
+  --maxw: 1180px;
+}
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-work-sans);
-  --font-display: var(--font-outfit);
-  --font-mono: var(--font-jetbrains-mono);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+  --color-text: var(--text);
   --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-}
+  --color-faint: var(--faint);
+  --color-accent: var(--accent);
 
-:root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
-
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
-
-/* ─── UI/UX Pro Max — Semantic color tokens ──────────────────────────────── */
-:root {
-  --color-accent: #6366F1;
-  --color-accent-muted: rgba(99, 102, 241, 0.12);
-  --color-surface: rgba(255, 255, 255, 0.04);
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-text-primary: rgba(255, 255, 255, 0.95);
-  --color-text-secondary: rgba(255, 255, 255, 0.60);
-  --color-text-muted: rgba(255, 255, 255, 0.40);
-  --color-destructive: #EF4444;
-  --spacing-base: 4px;
-  --touch-target: 44px;
-}
-
-/* Heading font (Outfit) vs body font (Work Sans) */
-h1, h2, h3, h4 {
-  font-family: var(--font-outfit), var(--font-work-sans), sans-serif;
-}
-
-/* Skip to main content — keyboard accessibility */
-.skip-link {
-  position: fixed;
-  top: -100%;
-  left: 1rem;
-  z-index: 99999;
-  padding: 0.625rem 1.25rem;
-  background: #6366F1;
-  color: white;
-  border-radius: 0 0 8px 8px;
-  font-weight: 600;
-  font-size: 0.875rem;
-  text-decoration: none;
-  transition: top 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.skip-link:focus {
-  top: 0;
-  outline: 2px solid white;
-  outline-offset: 2px;
-}
-
-/* Premium focus rings — WCAG 2.4.11 */
-:focus-visible {
-  outline: 2px solid rgba(99, 102, 241, 0.7);
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
-/* Touch optimization — removes 300ms tap delay */
-button, [role="button"], a, input, select, textarea {
-  touch-action: manipulation;
-}
-
-/* Cursor pointer on all interactive non-button elements */
-[role="button"], [tabindex]:not([tabindex="-1"]) {
-  cursor: pointer;
-}
-
-/* Minimum touch target size — 44×44pt per Apple HIG / §2 */
-button, [role="button"] {
-  min-height: var(--touch-target);
-}
-
-/* Line height — §6 body text 1.5–1.75 */
-p, li, td {
-  line-height: 1.65;
-}
-
-/* Tabular numerics for stats/dates/numbers — §6 */
-.tabular, time, [data-stat] {
-  font-variant-numeric: tabular-nums;
-  font-feature-settings: "tnum";
-}
-
-/* Disabled state — §8 0.38–0.5 opacity */
-:disabled, [aria-disabled="true"] {
-  opacity: 0.45;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-/* ─── Luxury design system additions ─────────────────────────────────────── */
-
-/* Grain/noise texture overlay — premium tactile feel */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  pointer-events: none;
-  opacity: 0.028;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 300px 300px;
-}
-
-/* Luxury heading typography — tight tracking, balanced wrapping */
-h1, h2, h3 {
-  text-wrap: balance;
-  letter-spacing: -0.02em;
-}
-h4, h5, h6 {
-  text-wrap: balance;
-}
-p {
-  text-wrap: pretty;
-}
-
-/* Luxury custom easing variable */
-:root {
-  --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-soft: cubic-bezier(0.32, 0.72, 0, 1);
-}
-
-/* Premium active press state */
-.btn-luxury {
-  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.15s;
-}
-.btn-luxury:active {
-  transform: scale(0.98);
-}
-
-/* Tabular numerics for stats */
-.tabular-nums {
-  font-variant-numeric: tabular-nums;
-}
-
-/* Diffusion shadow utility */
-.shadow-diffuse {
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.35);
-}
-
-/* Premium scrollbar */
-::-webkit-scrollbar {
-  width: 4px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 9999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.14);
-}
-
-/* ─── Canvas overlay mode — Spline canvas is fixed behind, main is transparent ── */
-.canvas-overlay-mode {
-  pointer-events: none;
-}
-.canvas-overlay-mode a,
-.canvas-overlay-mode button,
-.canvas-overlay-mode input,
-.canvas-overlay-mode label,
-.canvas-overlay-mode select,
-.canvas-overlay-mode textarea,
-.canvas-overlay-mode [role="button"],
-.canvas-overlay-mode p,
-.canvas-overlay-mode h1,
-.canvas-overlay-mode h2,
-.canvas-overlay-mode h3,
-.canvas-overlay-mode h4,
-.canvas-overlay-mode h5,
-.canvas-overlay-mode h6,
-.canvas-overlay-mode span,
-.canvas-overlay-mode svg {
-  pointer-events: auto;
-}
-
-/* ─────────────────────────────────────────────────────────────────────────── */
-
-html {
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
+  --font-display: var(--font-outfit);
+  --font-sans: var(--font-outfit);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
 * {
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  border-color: var(--line);
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Offset anchor targets so the fixed nav doesn't cover headings. */
+  scroll-padding-top: 90px;
+  background: var(--bg);
 }
 
 body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
-img, video {
-  max-width: 100%;
-  height: auto;
+::selection {
+  background: var(--accent);
+  color: #14100a;
 }
 
-.gpu-accelerated {
-  transform: translateZ(0);
-  will-change: transform;
+/* ---------- Typography primitives ---------- */
+.h-display {
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  font-weight: 600;
 }
 
-.transform-gpu {
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  perspective: 1000px;
+.h-section {
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  font-weight: 600;
+}
+
+.mono {
+  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+  font-feature-settings: "tnum" 1;
+}
+
+/* Small uppercase section marker, e.g. "01 — SELECTED WORK" */
+.eyebrow {
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.prose-body {
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 68ch;
+}
+
+/* ---------- Layout ---------- */
+.shell {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+@media (min-width: 768px) {
+  .shell {
+    padding-inline: 40px;
+  }
+}
+
+/* ---------- Surfaces ----------
+   Deliberately no backdrop-blur: blur inside scrolling containers forces
+   continuous GPU repaint and was a measured source of jank. */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+/* ---------- Focus ---------- */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 12px 20px;
+  background: var(--accent);
+  color: #14100a;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  left: 12px;
+  top: 12px;
+}
+
+/* ---------- Entry reveal ----------
+   CSS-driven so it costs nothing on the main thread. The IntersectionObserver
+   only toggles a class; nothing animates per-frame in JS. */
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 14px, 0);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: transform, opacity;
+}
+
+.reveal.is-in {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Once revealed, stop promoting the layer. */
+.reveal.is-settled {
+  will-change: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
   *,
   *::before,
   *::after {
@@ -335,61 +182,18 @@ img, video {
   }
 }
 
-/* Remove any navigation indicators or dots */
-nav a::before,
-nav a::after,
-.nav-item::before,
-.nav-item::after {
-  content: none !important;
-  display: none !important;
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 10px;
 }
-
-/* Remove any active state indicators */
-nav a.active::before,
-nav a.active::after,
-nav a[aria-current="page"]::before,
-nav a[aria-current="page"]::after {
-  content: none !important;
-  display: none !important;
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
 }
-
-/* Remove any potential red dots or indicators */
-*[class*="indicator"]::before,
-*[class*="indicator"]::after,
-*[class*="dot"]::before,
-*[class*="dot"]::after,
-*[class*="bullet"]::before,
-*[class*="bullet"]::after {
-  content: none !important;
-  display: none !important;
+::-webkit-scrollbar-thumb {
+  background: #2a2a2e;
+  border-radius: 6px;
+  border: 3px solid var(--bg-deep);
 }
-
-/* Remove any red colored elements that might appear as dots */
-*[style*="red"]::before,
-*[style*="red"]::after,
-*[class*="red"]::before,
-*[class*="red"]::after {
-  content: none !important;
-  display: none !important;
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3a3f;
 }
-
-/* Pulsing glow ring (orange, AWS brand color) */
-@keyframes pulse-ring {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(255, 153, 0, 0.25),
-                0 0 20px 4px rgba(255, 153, 0, 0.10);
-    opacity: 0.5;
-  }
-  50% {
-    box-shadow: 0 0 0 10px rgba(255, 153, 0, 0.10),
-                0 0 32px 8px rgba(255, 153, 0, 0.20);
-    opacity: 1;
-  }
-}
-
-.badge-pulse-ring {
-  animation: pulse-ring 2.8s ease-in-out infinite;
-  border: 1.5px solid rgba(255, 153, 0, 0.25);
-  border-radius: 9999px;
-}
-
