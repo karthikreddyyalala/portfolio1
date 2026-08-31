@@ -1,5 +1,6 @@
 import { Reveal } from "../ui/Reveal";
 import { Pipeline } from "../ui/Pipeline";
+import { Aside } from "../ui/Aside";
 import { caseStudy } from "@/content/casestudy";
 
 export function CaseStudy() {
@@ -72,6 +73,8 @@ export function CaseStudy() {
                         </li>
                       ))}
                     </ul>
+
+                    {init.aside && <Aside>{init.aside}</Aside>}
                   </div>
 
                   <div className="md:col-span-8">

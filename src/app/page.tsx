@@ -27,16 +27,31 @@ export default function Home() {
         <Contact />
       </main>
 
-      <footer className="border-t border-[var(--line)] py-9">
-        <div className="shell flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <p className="mono text-[11px] text-[var(--faint)]">
-            © {new Date().getFullYear()} {profile.name}
-          </p>
-          <p className="mono text-[11px] text-[var(--faint)]">
-            Built with Next.js · Designed and written by hand
-          </p>
+      {/* Colophon. Says a person chose these things, which a template cannot. */}
+      <footer className="border-t border-[var(--line)] py-12">
+        <div className="shell grid gap-8 md:grid-cols-12">
+          <div className="md:col-span-5">
+            <p className="mono text-[11px] text-[var(--faint)]">
+              © {new Date().getFullYear()} {profile.name}
+            </p>
+            <p className="mt-2 text-[13px] text-[var(--muted)]">
+              {profile.location} · Open to work, May 2027
+            </p>
+          </div>
+
+          <div className="md:col-span-7 md:pl-8">
+            <p className="eyebrow">Colophon</p>
+            <p className="prose-body mt-3 max-w-[52ch] text-[13px]">
+              Set in Outfit and JetBrains Mono. Built with Next.js and Tailwind,
+              deployed on Vercel. Written, designed, and typeset by hand — no
+              template, no theme, no page builder. Every number on this page comes
+              off my résumé, and every architecture diagram is a generalisation
+              rather than a copy.
+            </p>
+          </div>
         </div>
       </footer>
+
     </>
   );
 }

@@ -24,6 +24,13 @@ export type Initiative = {
   pipeline?: DiagramStage[];
   /** The engineering judgment. This is the differentiating content. */
   decisions: { title: string; body: string }[];
+  /**
+   * A margin note in Karthik's own voice.
+   * DRAFT — written from what he described, and the one place on the site where
+   * the copy is opinion rather than record. Needs his sign-off or rewrite
+   * before this goes public.
+   */
+  aside?: string;
   outcomes?: string[];
 };
 
@@ -49,7 +56,7 @@ export const caseStudy = {
       index: "01",
       title: "Multilingual knowledge search service",
       summary:
-        "A public-facing answer service over brand documentation. A customer asks a question in English, French, or Spanish and gets a grounded answer with source citations — or an honest handoff when the corpus can't support one. I owned the architecture, the API, and both ends of the stack.",
+        "A customer-facing answer service over brand documentation, designed, built, and validated end to end. Asked a question in English, French, or Spanish, it returns a grounded answer with source citations — or an honest handoff when the corpus can't support one. I owned the architecture, the API, and both ends of the stack.",
       tech: [
         "AWS Lambda",
         "API Gateway",
@@ -81,6 +88,8 @@ export const caseStudy = {
           body: "Unit tests prove the happy path returns the right shape. They say nothing about what happens when someone tries to talk the system into ignoring its instructions. I validated end to end with both: unit suites for the request pipeline, and an adversarial suite for injection, PII leakage, and off-domain questions.",
         },
       ],
+      aside:
+        "The cross-lingual call was the one I had to argue for. A clean per-language filter is the obvious design, and it returned nothing.",
       outcomes: [
         "Validated end to end with unit and adversarial test suites",
         "Positioned to serve millions of customers globally",
@@ -93,7 +102,7 @@ export const caseStudy = {
       index: "02",
       title: "Internal AI assistant",
       summary:
-        "An employee-facing assistant over internal documentation, with SSO, streaming responses, and an admin console where a non-engineer can safely change the system's behaviour without a deploy.",
+        "An employee-facing assistant over internal documentation, built with SSO, streaming responses, and an admin console designed so a non-engineer could safely change the system's behaviour without a deploy.",
       tech: [
         "Bedrock AgentCore",
         "Azure AD SSO/MFA",
@@ -120,6 +129,8 @@ export const caseStudy = {
           body: "\"How do those two relate?\" is meaningless to a search index. Before retrieval, a small fast model resolves pronouns and references against the recent conversation into a standalone question. It is skipped entirely on the first turn, so the common case costs nothing.",
         },
       ],
+      aside:
+        "Gating publish behind a test felt like friction until you imagine the alternative: an untested prompt going live to the whole company.",
       outcomes: [
         "Multi-turn session memory with real-time streaming responses",
         "Zero-downtime draft → test → approve → publish config pipeline",
@@ -131,7 +142,7 @@ export const caseStudy = {
       index: "03",
       title: "Natural-language-to-SQL analytics engine",
       summary:
-        "Contact Center staff type a plain-English business question and get back a table, a written summary, and a chart. No SQL. The engine joins case-management data against customer data automatically, and customer PII is structurally incapable of reaching the output.",
+        "Built so Contact Center staff could ask a plain-English business question and get back a table, a written summary, and a chart — no SQL. The engine joins case-management data against customer data automatically, and customer PII is structurally incapable of reaching the output.",
       tech: ["Amazon Bedrock", "Python", "SQL", "Schema-level PII controls"],
       pipeline: [
         { label: "Question", detail: "plain English", branch: "" },
@@ -153,6 +164,8 @@ export const caseStudy = {
           body: "A text-to-SQL system that is right most of the time is not usable, because you cannot tell which time you are in. I built a gold set of business questions covering every major table category and scored the engine against it — 44 of 44 correct. That number is the reason anyone was willing to rely on the tool.",
         },
       ],
+      aside:
+        "Seven column-name mismatches. Mock data would have let every one of them ship, and each would have failed in front of a user.",
       outcomes: [
         "Data turnaround reduced from days to seconds",
         "100% accuracy on the evaluation set (44/44)",
@@ -180,6 +193,8 @@ export const caseStudy = {
           body: "A dashboard only helps the people who remember to open it. Routing each engineer only their own items, in their inbox, before the day starts, is what actually changed behaviour — the live dashboard exists for drill-down, not as the primary surface.",
         },
       ],
+      aside:
+        "The least sophisticated thing I built and one of the most used. A schedule, a query, an email.",
       outcomes: ["Deployed to production for organization-wide adoption"],
     },
   ] satisfies Initiative[],

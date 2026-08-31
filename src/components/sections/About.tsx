@@ -44,6 +44,20 @@ export function About() {
                 </p>
               </Reveal>
             ))}
+
+            <Reveal delay={340}>
+              <div className="mt-12 border-t border-[var(--line)] pt-6">
+                <p className="eyebrow flex items-baseline gap-3">
+                  <span>Currently</span>
+                  <span className="normal-case tracking-normal text-[var(--faint)]">
+                    {profile.currently.updated}
+                  </span>
+                </p>
+                <p className="prose-body mt-3 text-[15px]">
+                  {profile.currently.text}
+                </p>
+              </div>
+            </Reveal>
           </div>
         </div>
       </div>

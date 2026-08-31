@@ -14,6 +14,17 @@ export const profile = {
     { value: "4.0", label: "GPA · ASU '27" },
   ],
 
+  /**
+   * Dated on purpose. A "currently" line with no date is decoration; with a
+   * date it is a signal the page is tended. Update it or delete it — a stale
+   * one is worse than none.
+   */
+  currently: {
+    updated: "August 2026",
+    text:
+      "Back at ASU for senior year, and rebuilding Interviewer.ai's evaluator agent after the first version graded too generously to be useful.",
+  },
+
   availability: {
     status: "Open to New Grad Software / AI Engineering roles — May 2027",
     active: true,
