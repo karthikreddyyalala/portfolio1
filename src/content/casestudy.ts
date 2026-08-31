@@ -76,8 +76,12 @@ export const caseStudy = {
       ],
       decisions: [
         {
-          title: "Why retrieval crosses languages instead of filtering by it",
-          body: "A strict per-language filter returned nothing for French and Spanish — the corpus was overwhelmingly English. Rather than ship an empty experience, I let multilingual embeddings retrieve the best English passages and had the model answer in the language the question was asked in. I documented the corpus size at which symmetric per-language filtering should be switched back on, so whoever inherits it knows when to change it and why.",
+          title: "How one index serves three languages",
+          body: "The embedding model is multilingual, so a question asked in French and a passage written in English land close together in the same vector space. That means no translation step, no separate index per language, and one retrieval call regardless of what was asked. The model is then instructed to answer in the language the question arrived in. Adding a fourth language becomes a content problem rather than an infrastructure one.",
+        },
+        {
+          title: "How answers stay scoped to the right brand",
+          body: "Brand is derived from the request origin rather than accepted from the client, so a caller cannot reach another brand's content by changing a parameter. Every document carries its brand as metadata from ingestion onward and retrieval filters on that metadata — which means one index serves all brands, and onboarding another is a data change rather than a new deployment.",
         },
         {
           title: "Why the response is checked twice",
@@ -89,7 +93,7 @@ export const caseStudy = {
         },
       ],
       aside:
-        "The cross-lingual call was the one I had to argue for. A clean per-language filter is the obvious design, and it returned nothing.",
+        "One embedding space instead of one index per language. That single choice is why adding a language here is a content problem, not a project.",
       outcomes: [
         "Validated end to end with unit and adversarial test suites",
         "Positioned to serve millions of customers globally",
