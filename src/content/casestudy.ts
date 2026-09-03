@@ -206,7 +206,7 @@ export const caseStudy = {
   research: {
     title: "AI visibility research",
     forWhom: "Delivered to the VP of Customer Experience",
-    body: "Beyond the build work, I sat in the weekly Customer Experience meetings, where the VP asked me to investigate how AI is changing the way customers decide which provider to use. I ran a competitive analysis across the company and its competitors, drawing on public customer sentiment, and delivered a written report with findings and recommendations.",
+    body: "Alongside the engineering work, I joined the weekly Customer Experience meetings. Watching how customer sentiment was tracked manually surfaced a clear gap: nobody had a consolidated view of what customers were saying publicly about the brand in real time. I investigated how AI is reshaping the way customers choose a car rental provider, running a competitive analysis across the company and its competitors using public customer data, and delivered a written report with findings and recommendations. The research led me to prototype a social listening dashboard that aggregates public reviews across Google, Trustpilot, the App Store, Google Play, and Reddit — surfacing sentiment trends and billing dispute patterns in one place.",
     note: "Findings are internal and are not reproduced here.",
   },
 } as const;
