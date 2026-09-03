@@ -26,7 +26,7 @@ export const projects: Project[] = [
     title: "CX Intelligence Dashboard",
     year: "2026",
     tagline: "Social listening tool that gives a CX team one view of every public customer conversation.",
-    body: "Built from what I saw in Avis Budget Group's weekly CX meetings. I was investigating how AI search engines and recommendation systems are influencing which car rental provider customers choose — and what strategies could improve the brand's visibility in those results. The dashboard came out of that research: a prototype that aggregates public customer reviews from Google, Trustpilot, the App Store, Google Play, and Reddit into one place. A dispute radar ranks billing complaints by escalation risk. AI analysis surfaces sentiment trends on demand. Entirely public data, deployed live.",
+    body: "A prototype I built while researching how AI engines are influencing which car rental provider customers choose. Aggregates public reviews from Google, Trustpilot, the App Store, Google Play, and Reddit — 1,634 verified reviews across 5 platforms. A dispute radar ranks billing complaints by escalation risk. AI analysis surfaces sentiment trends and brand visibility signals on demand. Deployed live on real data.",
     tech: ["Python", "FastAPI", "OpenAI APIs", "Railway", "React"],
     live: "https://cx-dashboard-backend-production.up.railway.app/",
     featured: true,
