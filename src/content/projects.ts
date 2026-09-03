@@ -17,8 +17,17 @@ export const projects: Project[] = [
     title: "Interviewer.ai",
     year: "2026",
     tagline: "Five agents that run a technical interview and remember how you did last time.",
-    body: "A five-agent LangGraph pipeline — Intake, Planner, Interviewer, Evaluator, Memory — with schema-validated contracts between agents, so a malformed handoff fails loudly instead of silently corrupting the next stage. Each agent has its own evaluation harness. Cross-session memory tracks which weaknesses recur, so the next interview targets them. Full-stack serverless: React on CloudFront and S3, FastAPI on Lambda behind API Gateway, Cognito auth, complete unit test coverage.",
+    body: "A five-agent LangGraph pipeline (Intake, Planner, Interviewer, Evaluator, Memory) with schema-validated contracts between agents, so a malformed handoff fails loudly instead of silently corrupting the next stage. Each agent has its own evaluation harness. Cross-session memory tracks which weaknesses recur, so the next interview targets them. Full-stack serverless: React on CloudFront and S3, FastAPI on Lambda behind API Gateway, Cognito auth, complete unit test coverage.",
     tech: ["LangGraph", "Amazon Bedrock", "FastAPI", "React", "DynamoDB", "AWS Lambda", "Cognito"],
+    featured: true,
+  },
+  {
+    id: "avis-internal-assistant",
+    title: "Employee AI Assistant",
+    year: "2026",
+    tagline: "Infosec chatbot where admins control everything through a web UI and employees just chat.",
+    body: "Built for Avis Budget Group. Admins get a web console to upload documents, configure the assistant, and publish prompts through a draft-test-approve-publish pipeline. Every document upload hits S3 directly; a Lambda triggers a Bedrock Knowledge Base resync so new content is live in retrieval without a deploy. Employees authenticate with Azure AD SSO and chat with the assistant. The two sides of the system are completely separated by design.",
+    tech: ["Amazon Bedrock", "AWS Lambda", "S3", "Bedrock Knowledge Bases", "Azure AD SSO", "DynamoDB", "Python"],
     featured: true,
   },
   {

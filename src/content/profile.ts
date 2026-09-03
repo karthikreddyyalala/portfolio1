@@ -5,7 +5,7 @@ export const profile = {
 
   // The claim. Everything above the fold hangs off this sentence.
   claim:
-    "I design and ship end-to-end systems — architecture, APIs, front end, back end — and most of what I've shipped lately has AI inside it. The interesting part is making it safe enough to hand to real users.",
+    "I find the business problem, locate the AI opportunity, and ship the system end to end: architecture, APIs, front end, back end. Most of what I've built lately has AI inside it. The part I care about is making it reliable enough to hand to real users.",
 
   proof: [
     { value: "Fortune 500", label: "production systems, shipped" },

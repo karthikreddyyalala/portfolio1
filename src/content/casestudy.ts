@@ -56,7 +56,7 @@ export const caseStudy = {
       index: "01",
       title: "Multilingual knowledge search service",
       summary:
-        "A customer-facing answer service over brand documentation, designed, built, and validated end to end. Asked a question in English, French, or Spanish, it returns a grounded answer with source citations — or an honest handoff when the corpus can't support one. I owned the architecture, the API, and both ends of the stack.",
+        "A customer-facing answer service over brand documentation, designed, built, and validated end to end. Ask it a question in English, French, or Spanish and it returns a grounded answer with source citations. When the corpus can't support one, it says so and hands off. I owned the architecture, the API, and both ends of the stack.",
       tech: [
         "AWS Lambda",
         "API Gateway",
@@ -77,15 +77,15 @@ export const caseStudy = {
       decisions: [
         {
           title: "How one index serves three languages",
-          body: "The embedding model is multilingual, so a question asked in French and a passage written in English land close together in the same vector space. That means no translation step, no separate index per language, and one retrieval call regardless of what was asked. The model is then instructed to answer in the language the question arrived in. Adding a fourth language becomes a content problem rather than an infrastructure one.",
+          body: "The embedding model is multilingual, so a question asked in French and a passage written in English land close together in the same vector space. That means no translation step, no separate index per language, and one retrieval call regardless of what was asked. The model answers in whatever language the question arrived in. Expanding coverage to any new language is a content question, not a systems one.",
         },
         {
           title: "How answers stay scoped to the right brand",
-          body: "Brand is derived from the request origin rather than accepted from the client, so a caller cannot reach another brand's content by changing a parameter. Every document carries its brand as metadata from ingestion onward and retrieval filters on that metadata — which means one index serves all brands, and onboarding another is a data change rather than a new deployment.",
+          body: "Brand is derived from the request origin, not accepted from the client. A caller cannot reach another brand's content by changing a parameter. Every document carries its brand as metadata set at ingestion time, and retrieval filters on that tag. One index serves all brands, and onboarding a new one is a data change rather than a new deployment.",
         },
         {
           title: "Why the response is checked twice",
-          body: "Filtering the request is not the same as trusting the response. The input pass rejects prompt attacks and sensitive data before anything reaches the model. The output pass verifies the answer is actually supported by the retrieved passages — an ungrounded answer never reaches the customer, it becomes a handoff instead.",
+          body: "Filtering the request is not the same as trusting the response. The input pass rejects prompt attacks and sensitive data before anything reaches the model. The output pass verifies the answer is actually supported by the retrieved passages. Anything ungrounded becomes a handoff, not a response.",
         },
         {
           title: "Why it shipped with adversarial tests, not just unit tests",
@@ -106,7 +106,7 @@ export const caseStudy = {
       index: "02",
       title: "Internal AI assistant",
       summary:
-        "An employee-facing assistant over internal documentation, built with SSO, streaming responses, and an admin console designed so a non-engineer could safely change the system's behaviour without a deploy.",
+        "An employee-facing infosec assistant built on AWS. Admins manage it through a web console: upload documents, set configurations, publish prompts. Uploads go straight to S3, a Lambda triggers a Knowledge Base resync, and the new content is live in retrieval without a deploy. Employees log in with SSO and chat. Admins get the pipeline. Users get the interface.",
       tech: [
         "Bedrock AgentCore",
         "Azure AD SSO/MFA",
