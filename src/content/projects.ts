@@ -72,15 +72,4 @@ export const projects: Project[] = [
     github: "https://github.com/karthikreddyyalala/Stock-Price-Predictor",
     featured: false,
   },
-  {
-    id: "career-twin",
-    title: "Career Digital Twin",
-    year: "2025",
-    tagline: "An agent that answers employer questions as me.",
-    body: "A retrieval-grounded digital twin that fields interview and recruiter questions from my own history, deployed on Hugging Face Spaces. An early experiment in grounding a persona in real documents instead of a long system prompt.",
-    tech: ["LangChain", "OpenAI APIs", "Hugging Face Spaces", "React"],
-    image: "/images/projects/career-digital-twin.webp",
-    github: "https://github.com/karthikreddyyalala/Carrer-Digital-twin",
-    featured: false,
-  },
 ];
