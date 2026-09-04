@@ -139,9 +139,11 @@ export function CaseStudy() {
               </div>
               <div className="md:col-span-8">
                 <p className="prose-body text-[15px]">{caseStudy.research.body}</p>
-                <p className="mono mt-4 text-[11px] text-[var(--faint)]">
-                  {caseStudy.research.note}
-                </p>
+                {caseStudy.research.note && (
+                  <p className="mono mt-4 text-[11px] text-[var(--faint)]">
+                    {caseStudy.research.note}
+                  </p>
+                )}
                 {caseStudy.research.liveLink && (
                   <a
                     href={caseStudy.research.liveLink}
