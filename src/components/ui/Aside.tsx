@@ -18,9 +18,6 @@ export function Aside({ children }: { children: ReactNode }) {
         transform: "rotate(-0.35deg)",
       }}
     >
-      <span aria-hidden className="mono mr-1.5 text-[var(--faint)]">
-        —
-      </span>
       {children}
     </p>
   );
