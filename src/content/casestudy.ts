@@ -56,7 +56,7 @@ export const caseStudy = {
       index: "01",
       title: "Multilingual knowledge search service",
       summary:
-        "A production RAG service over brand documentation, built end to end — retrieval and generation through guardrails, caching, and the analytics to prove it earns its place. Ask a question in English, French, or Spanish and it returns a grounded answer with source citations. A two-layer cache (hashed lookup → DynamoDB) sits in front of retrieval: repeat questions come back in a fraction of the time and skip the model call entirely, cutting cost and latency. Rate limiting and request guardrails protect the entry point, CloudWatch instruments the whole path, and a feedback-analytics dashboard gives the team a live read on whether answers are actually helping people — not just that the service is up. I owned the architecture, the API, and both ends of the stack.",
+        "A production RAG service over brand documentation, built end to end — retrieval and generation through guardrails, caching, and the analytics to prove it earns its place. Ask a question in English, French, or Spanish and it returns a grounded answer with source citations. A two-layer cache — exact-match and semantic — sits in front of retrieval on DynamoDB: an identical or reworded question comes back in a fraction of the time and skips the model call entirely, cutting cost and latency. Rate limiting and request guardrails protect the entry point, CloudWatch instruments the whole path, and a feedback-analytics dashboard gives the team a live read on whether answers are actually helping people — not just that the service is up. I owned the architecture, the API, and both ends of the stack.",
       tech: [
         "AWS Lambda",
         "API Gateway",
@@ -105,6 +105,7 @@ export const caseStudy = {
         "Scored retrieval and grounding on a fixed evaluation set to catch regressions early",
         "Hardened end to end with unit and adversarial suites — injection, PII, off-domain",
         "Built a feedback-analytics dashboard to measure real impact, not just uptime",
+        "Projected 100 engineering hours saved once live",
         "Projected $1M+ annual savings; architected to serve millions of customers",
       ],
     },
@@ -144,6 +145,7 @@ export const caseStudy = {
       aside:
         "Gating publish behind a test felt like friction until you imagine the alternative: an untested prompt going live to the whole company.",
       outcomes: [
+        "Passed a 6-phase test suite: 100% faithfulness, 0 hallucinations, 5/5 injection attempts blocked",
         "Constrained the model with AgentCore — guardrails, memory, and formatting on every call",
         "Shipped a zero-downtime config pipeline: draft → test → approve → publish, versioned",
         "Delivered real-time streaming answers with multi-turn session memory",
