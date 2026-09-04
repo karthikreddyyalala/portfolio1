@@ -101,11 +101,11 @@ export const caseStudy = {
       aside:
         "One embedding space instead of one index per language. That single choice is why adding a language here is a content problem, not a project.",
       outcomes: [
-        "Retrieval and grounding scored against a fixed evaluation set",
-        "Validated end to end with unit and adversarial test suites",
-        "Feedback-analytics dashboard for real usage and impact",
-        "Positioned to serve millions of customers globally",
-        "Projected $1M+ annual cost savings",
+        "Cut repeat-query cost and latency with a two-layer cache that skips the model call",
+        "Scored retrieval and grounding on a fixed evaluation set to catch regressions early",
+        "Hardened end to end with unit and adversarial suites — injection, PII, off-domain",
+        "Built a feedback-analytics dashboard to measure real impact, not just uptime",
+        "Projected $1M+ annual savings; architected to serve millions of customers",
       ],
     },
 
@@ -144,8 +144,9 @@ export const caseStudy = {
       aside:
         "Gating publish behind a test felt like friction until you imagine the alternative: an untested prompt going live to the whole company.",
       outcomes: [
-        "Multi-turn session memory with real-time streaming responses",
-        "Zero-downtime draft → test → approve → publish config pipeline",
+        "Constrained the model with AgentCore — guardrails, memory, and formatting on every call",
+        "Shipped a zero-downtime config pipeline: draft → test → approve → publish, versioned",
+        "Delivered real-time streaming answers with multi-turn session memory",
       ],
     },
 
@@ -189,11 +190,12 @@ export const caseStudy = {
       aside:
         "Seven column-name mismatches. Mock data would have let every one of them ship, and each would have failed in front of a user.",
       outcomes: [
-        "Data turnaround reduced from days to seconds",
-        "100% accuracy on the evaluation set (44/44)",
-        "Fixed KPI dashboard surfaces the team's regular metrics without a query at all",
-        "50 engineering + 20 product hours saved",
-        "Delivered as production-ready, well-commented code with docs, schema, and runbook",
+        "Reduced data turnaround from days to seconds",
+        "Scored 100% (44/44) on a gold-question evaluation set",
+        "Scoped the schema to business tables only — lower token cost, faster plans, no coverage lost",
+        "Shipped a KPI dashboard so the team reads regular metrics without a query",
+        "Saved 50 engineering and 20 product hours",
+        "Handed off production-ready with docs, schema, and runbook",
       ],
     },
 
@@ -218,7 +220,9 @@ export const caseStudy = {
       ],
       aside:
         "The least sophisticated thing I built and one of the most used. A schedule, a query, an email.",
-      outcomes: ["Deployed to production for organization-wide adoption"],
+      outcomes: [
+        "Deployed org-wide, automating the daily overdue-ticket triage a delivery lead did by hand",
+      ],
     },
   ] satisfies Initiative[],
 
