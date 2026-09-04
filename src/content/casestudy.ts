@@ -146,7 +146,7 @@ export const caseStudy = {
       index: "03",
       title: "Natural-language-to-SQL analytics engine",
       summary:
-        "Built so Contact Center staff could ask a plain-English business question and get back a table, a written summary, and a chart — no SQL. The engine joins case-management data against customer data automatically, and customer PII is structurally incapable of reaching the output.",
+        "Built so teams across Customer Experience, Operations, and Customer Success could ask a plain-English business question and get back a table, a written summary, and a chart — no SQL. The engine joins case-management data against customer data automatically, and customer PII is structurally incapable of reaching the output.",
       tech: ["Amazon Bedrock", "Python", "SQL", "Schema-level PII controls"],
       pipeline: [
         { label: "Question", detail: "plain English", branch: "" },
