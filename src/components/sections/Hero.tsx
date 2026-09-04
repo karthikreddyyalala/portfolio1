@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Reveal } from "../ui/Reveal";
 import { profile } from "@/content/profile";
 
@@ -15,7 +16,7 @@ export function Hero() {
 
       <div className="shell relative">
         <div className="grid items-center gap-14 md:grid-cols-12 md:gap-10">
-          <div className="md:col-span-8">
+          <div className="md:col-span-7">
             <Reveal>
               <p className="eyebrow flex items-center gap-2.5">
                 {profile.availability.active && (
@@ -64,6 +65,29 @@ export function Hero() {
             </Reveal>
           </div>
 
+          {/* Portrait */}
+          <div className="md:col-span-5">
+            <Reveal delay={200}>
+              <div className="relative mx-auto max-w-[340px] md:ml-auto md:mr-0">
+                <div className="aspect-[4/5] overflow-hidden rounded-[20px] border border-[var(--line)]">
+                  <Image
+                    src="/images/profile.webp"
+                    alt="Karthik Reddy Yalala"
+                    width={1000}
+                    height={1000}
+                    priority
+                    sizes="(max-width: 768px) 320px, 340px"
+                    className="h-full w-full object-cover object-top"
+                  />
+                </div>
+                <div
+                  aria-hidden
+                  className="absolute -bottom-3 -left-3 h-16 w-px"
+                  style={{ background: "var(--accent)" }}
+                />
+              </div>
+            </Reveal>
+          </div>
         </div>
 
         {/* Proof row — hairline separated, no cards */}

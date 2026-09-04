@@ -78,7 +78,7 @@ export function CaseStudy() {
                   </div>
 
                   <div className="min-w-0 md:col-span-8">
-                    <p className="prose-body text-[15.5px]">{init.summary}</p>
+                    <p className="prose-body text-[16.5px]">{init.summary}</p>
 
                     {init.pipeline && (
                       <div className="mt-8 border-y border-[var(--line)]">
@@ -94,10 +94,10 @@ export function CaseStudy() {
                           className="border-l pl-5"
                           style={{ borderColor: "var(--accent-dim)" }}
                         >
-                          <h4 className="text-[14px] font-medium text-[var(--text)]">
+                          <h4 className="text-[15px] font-medium text-[var(--text)]">
                             {d.title}
                           </h4>
-                          <p className="prose-body mt-2 text-[14px]">{d.body}</p>
+                          <p className="prose-body mt-2 text-[15px]">{d.body}</p>
                         </div>
                       ))}
                     </div>
@@ -107,7 +107,7 @@ export function CaseStudy() {
                         {init.outcomes.map((o) => (
                           <li
                             key={o}
-                            className="flex gap-3 text-[13.5px] text-[var(--muted)]"
+                            className="flex gap-3 text-[14.5px] text-[var(--muted)]"
                           >
                             <span aria-hidden className="mono mt-px text-[var(--accent)]">
                               ·
