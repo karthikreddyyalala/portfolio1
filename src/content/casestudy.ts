@@ -115,7 +115,7 @@ export const caseStudy = {
       index: "02",
       title: "Internal AI assistant",
       summary:
-        "An employee-facing infosec assistant built on AWS, with AWS AgentCore at the core. Rather than giving the model full control, the architecture keeps it constrained: retrieval pulls the top 25 chunks from the Knowledge Base based on the live config, then passes them to AgentCore — which wraps the Claude call, enforces guardrails, handles multi-turn session memory, and formats the response. Admins manage everything through a web console. Uploads go straight to S3, a Lambda triggers KB resync, and new content is live without a deploy. Employees log in with SSO and chat. Admins get the pipeline. Users get the interface.",
+        "An employee-facing assistant for company policy and compliance questions, built on AWS with AWS AgentCore at the core. Rather than giving the model full control, the architecture keeps it constrained: retrieval pulls the top 25 chunks from the Knowledge Base based on the live config, then passes them to AgentCore — which wraps the Claude call, enforces guardrails, handles multi-turn session memory, and formats the response. Admins manage everything through a web console. Uploads go straight to S3, a Lambda triggers KB resync, and new content is live without a deploy. Employees log in with SSO and chat. Admins get the pipeline. Users get the interface.",
       tech: [
         "Bedrock AgentCore",
         "Azure AD SSO/MFA",
@@ -149,6 +149,7 @@ export const caseStudy = {
         "Constrained the model with AgentCore — guardrails, memory, and formatting on every call",
         "Shipped a zero-downtime config pipeline: draft → test → approve → publish, versioned",
         "Delivered real-time streaming answers with multi-turn session memory",
+        "Replaced a third-party LLM SaaS dependency with an in-house AWS stack — keeping employee and compliance data in the company's own environment",
       ],
     },
 
@@ -224,6 +225,7 @@ export const caseStudy = {
         "The least sophisticated thing I built and one of the most used. A schedule, a query, an email.",
       outcomes: [
         "Deployed org-wide, automating the daily overdue-ticket triage a delivery lead did by hand",
+        "Bypassed Jira's 100-issue automation lookup cap with REST web requests for full board coverage",
       ],
     },
   ] satisfies Initiative[],
