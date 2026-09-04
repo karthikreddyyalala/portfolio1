@@ -22,15 +22,6 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    id: "avis-internal-assistant",
-    title: "Employee AI Assistant",
-    year: "2026",
-    tagline: "Policy and compliance chatbot where admins control everything through a web UI and employees just chat.",
-    body: "Built for Avis Budget Group. Admins get a web console to upload documents, configure the assistant, and publish prompts through a draft-test-approve-publish pipeline. Every document upload hits S3 directly; a Lambda triggers a Bedrock Knowledge Base resync so new content is live in retrieval without a deploy. Employees authenticate with Azure AD SSO and chat with the assistant. The two sides of the system are completely separated by design.",
-    tech: ["Amazon Bedrock", "AWS Lambda", "S3", "Bedrock Knowledge Bases", "Azure AD SSO", "DynamoDB", "Python"],
-    featured: true,
-  },
-  {
     id: "deep-research",
     title: "Deep Research Agent Team",
     year: "2025",

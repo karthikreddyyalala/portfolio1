@@ -77,7 +77,7 @@ export function CaseStudy() {
                     {init.aside && <Aside>{init.aside}</Aside>}
                   </div>
 
-                  <div className="md:col-span-8">
+                  <div className="min-w-0 md:col-span-8">
                     <p className="prose-body text-[15.5px]">{init.summary}</p>
 
                     {init.pipeline && (
