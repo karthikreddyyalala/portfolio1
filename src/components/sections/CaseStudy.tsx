@@ -142,6 +142,16 @@ export function CaseStudy() {
                 <p className="mono mt-4 text-[11px] text-[var(--faint)]">
                   {caseStudy.research.note}
                 </p>
+                {caseStudy.research.liveLink && (
+                  <a
+                    href={caseStudy.research.liveLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mono mt-4 inline-flex items-center gap-1.5 text-[12px] text-[var(--accent)] hover:opacity-75 transition-opacity"
+                  >
+                    {caseStudy.research.liveLinkLabel} ↗
+                  </a>
+                )}
               </div>
             </div>
           </div>

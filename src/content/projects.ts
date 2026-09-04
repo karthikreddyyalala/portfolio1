@@ -22,16 +22,6 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    id: "cx-intelligence",
-    title: "CX Intelligence Dashboard",
-    year: "2026",
-    tagline: "Social listening tool that gives a CX team one view of every public customer conversation.",
-    body: "A prototype I built while researching how AI engines are influencing which car rental provider customers choose. Aggregates public reviews from Google, Trustpilot, the App Store, Google Play, and Reddit — 1,634 verified reviews across 5 platforms. A dispute radar ranks billing complaints by escalation risk. AI analysis surfaces sentiment trends and brand visibility signals on demand. Deployed live on real data.",
-    tech: ["Python", "FastAPI", "OpenAI APIs", "Railway", "React"],
-    live: "https://cx-dashboard-backend-production.up.railway.app/",
-    featured: true,
-  },
-  {
     id: "avis-internal-assistant",
     title: "Employee AI Assistant",
     year: "2026",
