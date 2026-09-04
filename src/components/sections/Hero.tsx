@@ -1,15 +1,9 @@
-import Image from "next/image";
 import { Reveal } from "../ui/Reveal";
 import { profile } from "@/content/profile";
 
-/**
- * Asymmetric hero: copy left, portrait right. Not centered — a centered hero
- * over left-aligned body copy is the most common template tell.
- */
 export function Hero() {
   return (
     <section id="top" className="relative flex min-h-[100dvh] items-center pt-24">
-      {/* Single soft light source, top-left. Static — no animated gradient. */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
@@ -21,8 +15,7 @@ export function Hero() {
 
       <div className="shell relative">
         <div className="grid items-center gap-14 md:grid-cols-12 md:gap-10">
-          {/* Copy — 7 of 12, deliberately not half */}
-          <div className="md:col-span-7">
+          <div className="md:col-span-8">
             <Reveal>
               <p className="eyebrow flex items-center gap-2.5">
                 {profile.availability.active && (
@@ -71,32 +64,6 @@ export function Hero() {
             </Reveal>
           </div>
 
-          {/* Portrait — 5 of 12 */}
-          <div className="md:col-span-5">
-            <Reveal delay={200}>
-              <div className="relative mx-auto max-w-[340px] md:ml-auto md:mr-0">
-                {/* Source headshot is square; cropped 4:5 from the top so the
-                    frame reads as a portrait without cutting the face. */}
-                <div className="aspect-[4/5] overflow-hidden rounded-[20px] border border-[var(--line)]">
-                  <Image
-                    src="/images/profile.webp"
-                    alt="Karthik Reddy Yalala"
-                    width={1000}
-                    height={1000}
-                    priority
-                    sizes="(max-width: 768px) 320px, 340px"
-                    className="h-full w-full object-cover object-top"
-                  />
-                </div>
-                {/* Offset accent rule — asymmetry cue */}
-                <div
-                  aria-hidden
-                  className="absolute -bottom-3 -left-3 h-16 w-px"
-                  style={{ background: "var(--accent)" }}
-                />
-              </div>
-            </Reveal>
-          </div>
         </div>
 
         {/* Proof row — hairline separated, no cards */}

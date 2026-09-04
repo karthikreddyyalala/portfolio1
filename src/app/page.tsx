@@ -39,16 +39,6 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="md:col-span-7 md:pl-8">
-            <p className="eyebrow">Colophon</p>
-            <p className="prose-body mt-3 max-w-[52ch] text-[13px]">
-              Set in Outfit and JetBrains Mono. Built with Next.js and Tailwind,
-              deployed on Vercel. Written, designed, and typeset by hand — no
-              template, no theme, no page builder. Every number on this page comes
-              off my résumé, and every architecture diagram is a generalisation
-              rather than a copy.
-            </p>
-          </div>
         </div>
       </footer>
 

@@ -24,6 +24,22 @@
   --maxw: 1180px;
 }
 
+/* Light mode overrides */
+[data-theme="light"] {
+  --bg: #f7f6f3;
+  --bg-deep: #eeede9;
+  --surface: #ffffff;
+  --surface-hi: #f0efeb;
+  --line: rgba(0, 0, 0, 0.08);
+  --line-hi: rgba(0, 0, 0, 0.14);
+  --text: #141412;
+  --muted: #6b6b66;
+  --faint: #9e9e98;
+  --accent: #b8762e;
+  --accent-hi: #c8873e;
+  --accent-dim: rgba(184, 118, 46, 0.12);
+}
+
 @theme inline {
   --color-bg: var(--bg);
   --color-surface: var(--surface);

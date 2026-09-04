@@ -56,7 +56,7 @@ export const caseStudy = {
       index: "01",
       title: "Multilingual knowledge search service",
       summary:
-        "A customer-facing answer service over brand documentation, designed, built, and validated end to end. Ask it a question in English, French, or Spanish and it returns a grounded answer with source citations. When the corpus can't support one, it says so and hands off. I owned the architecture, the API, and both ends of the stack.",
+        "A production RAG pipeline over brand documentation — end to end, architecture through deployment. Ask it a question in English, French, or Spanish and it returns a grounded answer with source citations. A two-layer cache (SHA-256 hash → DynamoDB) sits in front of retrieval: cache hits return in under 500ms and skip the model call entirely, cutting cost and latency on repeated queries. When the corpus can't support an answer, it says so and hands off. I owned the architecture, the API, and both ends of the stack.",
       tech: [
         "AWS Lambda",
         "API Gateway",
@@ -106,7 +106,7 @@ export const caseStudy = {
       index: "02",
       title: "Internal AI assistant",
       summary:
-        "An employee-facing infosec assistant built on AWS. Admins manage it through a web console: upload documents, set configurations, publish prompts. Uploads go straight to S3, a Lambda triggers a Knowledge Base resync, and the new content is live in retrieval without a deploy. Employees log in with SSO and chat. Admins get the pipeline. Users get the interface.",
+        "An employee-facing infosec assistant built on AWS, with AWS AgentCore at the core. Rather than giving the model full control, the architecture keeps it constrained: retrieval pulls the top 25 chunks from the Knowledge Base based on the live config, then passes them to AgentCore — which wraps the Claude call, enforces guardrails, handles multi-turn session memory, and formats the response. Admins manage everything through a web console. Uploads go straight to S3, a Lambda triggers KB resync, and new content is live without a deploy. Employees log in with SSO and chat. Admins get the pipeline. Users get the interface.",
       tech: [
         "Bedrock AgentCore",
         "Azure AD SSO/MFA",
@@ -146,12 +146,13 @@ export const caseStudy = {
       index: "03",
       title: "Natural-language-to-SQL analytics engine",
       summary:
-        "Built so teams across Customer Experience, Operations, and Customer Success could ask a plain-English business question and get back a table, a written summary, and a chart — no SQL. The engine joins case-management data against customer data automatically, and customer PII is structurally incapable of reaching the output.",
-      tech: ["Amazon Bedrock", "Python", "SQL", "Schema-level PII controls"],
+        "A self-correcting agent loop that turns a plain-English question into a table, a written summary, and a chart — no SQL required. The agent plans, reads a schema catalog (25 tables across 2 systems, PII-flagged column by column), writes SQL, validates it, executes against PGlite, then summarizes. Evaluated on a 44-question gold set — 44/44 correct. Teams across Customer Experience, Operations, and Customer Success can use it. Customer PII is structurally incapable of reaching the output.",
+      tech: ["Amazon Bedrock", "Claude Sonnet", "Next.js", "PGlite", "SQL", "Schema catalog", "Vercel AI SDK"],
       pipeline: [
         { label: "Question", detail: "plain English", branch: "" },
-        { label: "Schema grounding", detail: "25 tables, 2 systems", branch: "PII fields excluded" },
-        { label: "Query synthesis", detail: "validated composite joins", branch: "" },
+        { label: "Schema grounding", detail: "25 tables, PII-flagged catalog", branch: "PII fields excluded" },
+        { label: "SQL synthesis", detail: "agent loop, self-correcting", branch: "" },
+        { label: "Execute", detail: "PGlite, validated joins", branch: "" },
         { label: "Result", detail: "table + summary + chart", branch: "" },
       ],
       decisions: [

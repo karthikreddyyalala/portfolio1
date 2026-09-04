@@ -62,7 +62,7 @@ export const stack: StackGroup[] = [
     id: "cloud",
     label: "Cloud (AWS)",
     note: "Where it runs",
-    items: ["Lambda", "API Gateway", "CloudFront", "S3", "DynamoDB", "Cognito", "WAF", "Azure AD", "Docker"],
+    items: ["Lambda", "API Gateway", "CloudFront", "S3", "DynamoDB", "Cognito", "CloudWatch", "CloudTrail", "WAF", "Azure AD", "Docker"],
   },
   {
     id: "data",
