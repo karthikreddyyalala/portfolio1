@@ -1,6 +1,6 @@
 export const profile = {
   name: "Karthik Reddy Yalala",
-  role: "Software Engineer",
+  role: "AI Engineer · SDE",
   location: "Tempe, Arizona",
 
   // The claim. Everything above the fold hangs off this sentence.
