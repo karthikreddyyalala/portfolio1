@@ -56,17 +56,19 @@ export const caseStudy = {
       index: "01",
       title: "Multilingual knowledge search service",
       summary:
-        "A production RAG pipeline over brand documentation — end to end, architecture through deployment. Ask it a question in English, French, or Spanish and it returns a grounded answer with source citations. A two-layer cache (SHA-256 hash → DynamoDB) sits in front of retrieval: cache hits return in under 500ms and skip the model call entirely, cutting cost and latency on repeated queries. When the corpus can't support an answer, it says so and hands off. I owned the architecture, the API, and both ends of the stack.",
+        "A production RAG service over brand documentation, built end to end — retrieval and generation through guardrails, caching, and the analytics to prove it earns its place. Ask a question in English, French, or Spanish and it returns a grounded answer with source citations. A two-layer cache (hashed lookup → DynamoDB) sits in front of retrieval: repeat questions come back in a fraction of the time and skip the model call entirely, cutting cost and latency. Rate limiting and request guardrails protect the entry point, CloudWatch instruments the whole path, and a feedback-analytics dashboard gives the team a live read on whether answers are actually helping people — not just that the service is up. I owned the architecture, the API, and both ends of the stack.",
       tech: [
         "AWS Lambda",
         "API Gateway",
         "Amazon Bedrock",
+        "Bedrock Knowledge Bases",
         "Bedrock Guardrails",
         "DynamoDB",
+        "CloudWatch",
         "CloudFront",
       ],
       pipeline: [
-        { label: "Request", detail: "language + brand detected", branch: "" },
+        { label: "Request", detail: "rate-limited, language + brand", branch: "" },
         { label: "Input guard", detail: "prompt-attack, PII, topics", branch: "blocked → rephrase" },
         { label: "Cache", detail: "hashed lookup", branch: "hit → skip retrieval" },
         { label: "Retrieval", detail: "multilingual embeddings", branch: "no match → escalate" },
@@ -91,11 +93,17 @@ export const caseStudy = {
           title: "Why it shipped with adversarial tests, not just unit tests",
           body: "Unit tests prove the happy path returns the right shape. They say nothing about what happens when someone tries to talk the system into ignoring its instructions. I validated end to end with both: unit suites for the request pipeline, and an adversarial suite for injection, PII leakage, and off-domain questions.",
         },
+        {
+          title: "Why building the pipeline was only half the job",
+          body: "A RAG system that runs is not the same as one that helps. Retrieval and grounding are scored against a fixed evaluation set, so a regression shows up as a failing number rather than a user complaint. And a feedback-analytics dashboard is part of the design, not an afterthought — what people ask, where answers fall short, whether the thing is actually saving anyone time. The point was never just to ship it; it was to be able to prove it was worth keeping.",
+        },
       ],
       aside:
         "One embedding space instead of one index per language. That single choice is why adding a language here is a content problem, not a project.",
       outcomes: [
+        "Retrieval and grounding scored against a fixed evaluation set",
         "Validated end to end with unit and adversarial test suites",
+        "Feedback-analytics dashboard for real usage and impact",
         "Positioned to serve millions of customers globally",
         "Projected $1M+ annual cost savings",
       ],
@@ -146,23 +154,32 @@ export const caseStudy = {
       index: "03",
       title: "Natural-language-to-SQL analytics engine",
       summary:
-        "A self-correcting agent loop that turns a plain-English question into a table, a written summary, and a chart — no SQL required. The agent plans, reads a schema catalog (25 tables across 2 systems, PII-flagged column by column), writes SQL, validates it, executes against PGlite, then summarizes. Evaluated on a 44-question gold set — 44/44 correct. Teams across Customer Experience, Operations, and Customer Success can use it. Customer PII is structurally incapable of reaching the output.",
-      tech: ["Amazon Bedrock", "Claude Sonnet", "Next.js", "PGlite", "SQL", "Schema catalog", "Vercel AI SDK"],
+        "A self-correcting agent loop that turns a plain-English question into a table, a summary, and a chart — no SQL, no data-team ticket, no waiting a day for someone to pull it. It runs as a tool-use loop on the Vercel AI SDK over Bedrock Claude: the agent plans its approach, pulls only the schema it needs, writes the SQL, guards and executes it, then presents the result — and if a query fails, it reads the error and corrects itself instead of giving up. I analyzed the full database and deliberately scoped the agent to the business-relevant tables rather than the entire operational schema, which cut token cost and latency sharply with nothing lost in coverage. Verified against a gold question set before anyone relied on it. Customer PII is structurally incapable of reaching the output.",
+      tech: ["Amazon Bedrock", "Claude Sonnet", "Vercel AI SDK", "Tool-use agent", "Next.js", "PGlite", "SQL"],
       pipeline: [
         { label: "Question", detail: "plain English", branch: "" },
-        { label: "Schema grounding", detail: "25 tables, PII-flagged catalog", branch: "PII fields excluded" },
-        { label: "SQL synthesis", detail: "agent loop, self-correcting", branch: "" },
-        { label: "Execute", detail: "PGlite, validated joins", branch: "" },
+        { label: "Plan", detail: "agent picks the approach", branch: "" },
+        { label: "Schema", detail: "only the tables needed", branch: "PII columns excluded" },
+        { label: "SQL", detail: "written, self-corrects on error", branch: "" },
+        { label: "Execute", detail: "SELECT-only, PII-blocked", branch: "blocked → rewrite" },
         { label: "Result", detail: "table + summary + chart", branch: "" },
       ],
       decisions: [
+        {
+          title: "Why it's an agent loop and not a single prompt",
+          body: "One prompt writing SQL in a single shot fails silently the moment a column name is off or a join doesn't hold. Instead the model works as an agent with a small set of tools — plan, read schema, execute, present — and a hard stop once an answer is produced. Every query passes a guard before it touches the database: SELECT-only, no restricted columns, no PII. If execution fails, the error goes back to the agent and it tries again rather than returning nothing. That loop is what makes it reliable enough to hand to a non-technical team.",
+        },
+        {
+          title: "Why the agent sees a scoped schema, not the whole database",
+          body: "I analyzed the entire database and found most of it was operational tables the questions never needed. Handing all of that to the model would have meant more tokens, slower plans, and more ways to write a wrong join. So I scoped the agent to the business-relevant tables only — smaller prompts, lower cost, faster answers, and no loss of coverage on the questions people actually ask.",
+        },
         {
           title: "Why PII is removed from the schema, not filtered from the output",
           body: "A filter is something you can forget to apply. Sensitive customer fields were excluded from the schema the model can see at all, and the remaining sensitive fields were restricted to aggregate use only. The model cannot select a column it was never shown.",
         },
         {
           title: "Why I verified against production instead of mocks",
-          body: "I checked the schema column by column against real production data and found seven column-name mismatches that mock-based testing had never surfaced. Every one would have been a runtime failure in front of a user. I also proved the composite join between the two source systems end to end on real matched cases rather than assuming the key held.",
+          body: "I checked the schema column by column against real production data and found seven column-name mismatches that mock-based testing had never surfaced. Every one would have been a runtime failure in front of a user. I also proved the composite join across the two source tables end to end on real matched cases rather than assuming the key held.",
         },
         {
           title: "Why I built a scored question set before trusting it",
@@ -174,6 +191,7 @@ export const caseStudy = {
       outcomes: [
         "Data turnaround reduced from days to seconds",
         "100% accuracy on the evaluation set (44/44)",
+        "Fixed KPI dashboard surfaces the team's regular metrics without a query at all",
         "50 engineering + 20 product hours saved",
         "Delivered as production-ready, well-commented code with docs, schema, and runbook",
       ],

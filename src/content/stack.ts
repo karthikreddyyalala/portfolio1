@@ -33,6 +33,7 @@ export const stack: StackGroup[] = [
     items: [
       "Amazon Bedrock",
       "Bedrock AgentCore",
+      "Bedrock Knowledge Bases",
       "Bedrock Guardrails",
       "Claude",
       "OpenAI APIs",
@@ -40,6 +41,10 @@ export const stack: StackGroup[] = [
       "LangChain",
       "CrewAI",
       "RAG",
+      "RAG evaluation",
+      "Agent loops / tool use",
+      "Vector search",
+      "Embeddings",
       "Prompt engineering",
       "PyTorch",
       "TensorFlow",
