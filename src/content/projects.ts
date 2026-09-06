@@ -13,11 +13,11 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    id: "interviewer-ai",
-    title: "Interviewer.ai",
+    id: "crucible",
+    title: "Crucible",
     year: "2026",
-    tagline: "Five agents that run a technical interview and remember how you did last time.",
-    body: "A five-agent LangGraph pipeline (Intake, Planner, Interviewer, Evaluator, Memory) with schema-validated contracts between agents, so a malformed handoff fails loudly instead of silently corrupting the next stage. Each agent has its own evaluation harness. Cross-session memory tracks which weaknesses recur, so the next interview targets them. Full-stack serverless: React on CloudFront and S3, FastAPI on Lambda behind API Gateway, Cognito auth, complete unit test coverage.",
+    tagline: "A multi-stage interview agent that rewrites the next session around where you struggled last time.",
+    body: "A LangGraph pipeline across six stages (intake, planning, live interview, evaluation, cross-session memory, coaching) where each session's question plan is rewritten around the candidate's persisted weak spots. Verified by end-to-end tests that assert on actual generated prompt text, proving real adaptation rather than schema conformance. Golden-dataset eval harness covers adversarial cases: buzzword-padded answers, length-bias traps, subtly wrong Big-O buried in fluent prose. Claude Haiku handles structured extraction; Sonnet handles reasoning. A concurrent-write data-loss bug in cross-session memory was caught and fixed via optimistic locking with conditional writes. Full serverless stack with 100+ backend tests and CI.",
     tech: ["LangGraph", "Amazon Bedrock", "FastAPI", "React", "DynamoDB", "AWS Lambda", "Cognito"],
     featured: true,
   },
@@ -25,10 +25,9 @@ export const projects: Project[] = [
     id: "deep-research",
     title: "Deep Research Agent Team",
     year: "2025",
-    tagline: "A planner–executor–validator loop that does the reading for you.",
-    body: "A modular multi-agent research system where a planner decomposes a topic, executors gather sources, and a validator checks the synthesis before it is returned. Built with retry logic, exponential backoff, and output caching so a single failed tool call doesn't sink an entire run. Cut manual research effort by 70%.",
+    tagline: "A planner, executor, and validator loop that does the reading for you.",
+    body: "A modular multi-agent research system where a planner decomposes a topic, executors gather sources, and a validator checks the synthesis before it is returned. Built with retry logic, exponential backoff, and output caching so a single failed tool call does not sink an entire run. Cut manual research effort by 70%.",
     tech: ["CrewAI", "LangGraph", "OpenAI APIs", "Pinecone", "Python"],
-    image: "/images/projects/deep-research-team.webp",
     github: "https://github.com/karthikreddyyalala/Deep-Research-Agent-Team-",
     featured: true,
   },
