@@ -32,6 +32,15 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    id: "finrag-mcp",
+    title: "FinRAG MCP",
+    year: "2026",
+    tagline: "Cited financial intelligence over 500+ SEC filings, served through an MCP server.",
+    body: "A production MCP server targeting the Anthropic registry that answers financial questions with source citations across 500+ SEC filings from 50 companies. The EDGAR ingestion pipeline handles table-aware document extraction and hierarchical chunking with weekly refresh via EventBridge. Retrieval runs four stages: query rewriting with Claude Haiku, parallel BM25 and dense hybrid search via Bedrock Knowledge Bases, neural reranking, and a custom numerical grounding verifier to eliminate hallucinated figures. Benchmarked against a 300-question FinanceBench dataset with ragas metrics wired into GitHub Actions as regression gates. Serverless on AWS with Cognito OAuth 2.1/PKCE and a public dashboard tracking faithfulness, numerical accuracy, and cost per query.",
+    tech: ["Amazon Bedrock", "MCP SDK", "Python", "FastAPI", "ragas", "AWS Lambda", "DynamoDB", "CloudWatch"],
+    featured: true,
+  },
+  {
     id: "trading-floor",
     title: "Autonomous Trading Floor",
     year: "2025",
